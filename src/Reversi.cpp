@@ -1,50 +1,27 @@
 #include "Reversi.hpp"
 #include <iostream>
+#include <vector>
 
 Reversi::Reversi() : JogoDeTabuleiro(8, 8) {
-    tabuleiro[3][3] = tabuleiro[4][4] = 'O';
-    tabuleiro[3][4] = tabuleiro[4][3] = 'X';
+    tabuleiro[3][3] = 'O';
+    tabuleiro[3][4] = 'X';
+    tabuleiro[4][3] = 'X';
+    tabuleiro[4][4] = 'O';
 }
 
 bool Reversi::dentroDoTabuleiro(int linha, int coluna) const {
     return linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas;
 }
 
-bool Reversi::podeVirar(int linha, int coluna, int deltaLinha, int deltaColuna, char jogador) const {
-    char oponente = (jogador == 'X') ? 'O' : 'X';
-    linha += deltaLinha;
-    coluna += deltaColuna;
-
-    if (!dentroDoTabuleiro(linha, coluna) || tabuleiro[linha][coluna] != oponente) {
-        return false;
-    }
-
-    linha += deltaLinha;
-    coluna += deltaColuna;
-    while (dentroDoTabuleiro(linha, coluna)) {
-        if (tabuleiro[linha][coluna] == jogador) {
-            return true;
-        }
-        if (tabuleiro[linha][coluna] == '-') {
-            return false;
-        }
-        linha += deltaLinha;
-        coluna += deltaColuna;
-    }
-
-    return false;
-}
-
-bool Reversi::jogadaValida(int linha, int coluna) const {
-    if (tabuleiro[linha][coluna] != '-') {
+bool Reversi::jogadaValida(int linha, int coluna, char jogador) const {
+    if (!dentroDoTabuleiro(linha, coluna) || tabuleiro[linha][coluna] != '-') {
         return false;
     }
 
     for (int deltaLinha = -1; deltaLinha <= 1; ++deltaLinha) {
         for (int deltaColuna = -1; deltaColuna <= 1; ++deltaColuna) {
             if (deltaLinha != 0 || deltaColuna != 0) {
-                if (podeVirar(linha, coluna, deltaLinha, deltaColuna, 'X') || 
-                    podeVirar(linha, coluna, deltaLinha, deltaColuna, 'O')) {
+                if (podeVirar(linha, coluna, deltaLinha, deltaColuna, jogador)) {
                     return true;
                 }
             }
@@ -54,46 +31,69 @@ bool Reversi::jogadaValida(int linha, int coluna) const {
     return false;
 }
 
+bool Reversi::podeVirar(int linha, int coluna, int deltaLinha, int deltaColuna, char jogador) const {
+    int i = linha + deltaLinha;
+    int j = coluna + deltaColuna;
+    bool encontrouOponente = false;
+
+    while (dentroDoTabuleiro(i, j) && tabuleiro[i][j] != '-' && tabuleiro[i][j] != jogador) {
+        encontrouOponente = true;
+        i += deltaLinha;
+        j += deltaColuna;
+    }
+
+    return encontrouOponente && dentroDoTabuleiro(i, j) && tabuleiro[i][j] == jogador;
+}
+
 void Reversi::fazerJogada(int linha, int coluna, char jogador) {
-    if (!jogadaValida(linha, coluna)) {
-        std::cout << "Jogada inválida!" << std::endl;
+    if (!jogadaValida(linha, coluna, jogador)) {
+        std::cout << "Jogada inválida\n";
         return;
     }
 
     tabuleiro[linha][coluna] = jogador;
 
-    for (int deltaLinha = -1; deltaLinha <= 1; ++deltaLinha) {
-        for (int deltaColuna = -1; deltaColuna <= 1; ++deltaColuna) {
-            if (deltaLinha != 0 || deltaColuna != 0) {
-                if (podeVirar(linha, coluna, deltaLinha, deltaColuna, jogador)) {
-                    int l = linha + deltaLinha;
-                    int c = coluna + deltaColuna;
-                    while (tabuleiro[l][c] != jogador) {
-                        tabuleiro[l][c] = jogador;
-                        l += deltaLinha;
-                        c += deltaColuna;
-                    }
-                }
+    const std::vector<std::pair<int, int>> direcoes = {
+        {-1, -1}, {-1, 0}, {-1, 1},
+        {0, -1},         {0, 1},
+        {1, -1}, {1, 0}, {1, 1}
+    };
+
+    for (const auto& [deltaLinha, deltaColuna] : direcoes) {
+        if (podeVirar(linha, coluna, deltaLinha, deltaColuna, jogador)) {
+            int r = linha + deltaLinha;
+            int c = coluna + deltaColuna;
+            char adversario = (jogador == 'X') ? 'O' : 'X';
+
+            while (tabuleiro[r][c] == adversario) {
+                tabuleiro[r][c] = jogador;
+                r += deltaLinha;
+                c += deltaColuna;
             }
         }
     }
 }
 
 bool Reversi::verificarVitoria(char jogador) const {
-    char oponente = (jogador == 'X') ? 'O' : 'X';
-    int contJogador = 0, contOponente = 0;
+    if (tabuleiroCheio() || (!possuiJogadaValida('X') && !possuiJogadaValida('O'))) {
+        int contJogador = 0;
+        int contAdversario = 0;
+        char adversario = (jogador == 'X') ? 'O' : 'X';
 
-    for (int i = 0; i < linhas; ++i) {
-        for (int j = 0; j < colunas; ++j) {
-            if (tabuleiro[i][j] == jogador) {
-                ++contJogador;
-            } else if (tabuleiro[i][j] == oponente) {
-                ++contOponente;
+        for (int i = 0; i < linhas; ++i) {
+            for (int j = 0; j < colunas; ++j) {
+                if (tabuleiro[i][j] == jogador) {
+                    ++contJogador;
+                } else if (tabuleiro[i][j] == adversario) {
+                    ++contAdversario;
+                }
             }
         }
+
+        return contJogador > contAdversario;
     }
 
-    return contJogador > contOponente;
+    return false;
 }
 
 bool Reversi::tabuleiroCheio() const {
@@ -105,4 +105,15 @@ bool Reversi::tabuleiroCheio() const {
         }
     }
     return true;
+}
+
+bool Reversi::possuiJogadaValida(char jogador) const {
+    for (int i = 0; i < linhas; ++i) {
+        for (int j = 0; j < colunas; ++j) {
+            if (jogadaValida(i, j, jogador)) {
+                return true;
+            }
+        }
+    }
+    return false;
 }

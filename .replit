@@ -1,0 +1,6 @@
+run = "./bin/main"
+compile = "make"
+
+[deployment]
+run = ["sh", "-c", "./bin/main"]
+build = ["sh", "-c", "make"]

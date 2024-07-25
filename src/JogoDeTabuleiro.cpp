@@ -1,6 +1,7 @@
 #include "JogoDeTabuleiro.hpp"
 #include <iostream>
 #include <algorithm> // para std::fill
+#include <iomanip> // para std::setw
 
 JogoDeTabuleiro::JogoDeTabuleiro(int linhas, int colunas) : linhas(linhas), colunas(colunas) {
     tabuleiro = new char*[linhas];
@@ -11,7 +12,16 @@ JogoDeTabuleiro::JogoDeTabuleiro(int linhas, int colunas) : linhas(linhas), colu
 }
 
 void JogoDeTabuleiro::imprimirTabuleiro() const {
+    // Imprime a numeração das colunas
+    std::cout << "  ";
+    for (int j = 0; j < colunas; ++j) {
+        std::cout << std::setw(2) << j + 1;
+    }
+    std::cout << '\n';
+
+    // Imprime o tabuleiro com a numeração das linhas
     for (int i = 0; i < linhas; ++i) {
+        std::cout << std::setw(2) << i + 1 << ' '; // Numeração das linhas
         for (int j = 0; j < colunas; ++j) {
             std::cout << tabuleiro[i][j] << ' ';
         }
