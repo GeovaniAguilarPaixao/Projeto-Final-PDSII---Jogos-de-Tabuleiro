@@ -49,8 +49,6 @@ bool Reversi::fazerJogada(int linha, int coluna, char jogador) {
     
     if (!jogadaValida(linha, coluna, jogador)) {
         std::cout << "Jogada inválida\n";
-        //jogador = (jogador == 'X') ? 'O' : 'X'
-        
         return false;
     }
     

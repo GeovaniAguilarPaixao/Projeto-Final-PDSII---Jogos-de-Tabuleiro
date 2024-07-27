@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Reversi.hpp"
 #include "Lig4.hpp"
+#include "JogoDaVelha.hpp"
 
 void jogar(JogoDeTabuleiro* jogo) {
     char jogador = 'X';
@@ -14,9 +15,6 @@ void jogar(JogoDeTabuleiro* jogo) {
             std::cin >> linha >> coluna;
             linha -= 1; // Ajuste para o índice da linha
             coluna -= 1; // Ajuste para o índice da coluna
-//tentando corrigir bug que passa para o próximo jogador após jogada invalida
-            
-            
             if (jogo->jogadaValida(linha, coluna)) {
                 bool verificaComeu = jogo->fazerJogada(linha, coluna, jogador);
                 if(!verificaComeu){
@@ -24,7 +22,6 @@ void jogar(JogoDeTabuleiro* jogo) {
                 }
             } else {
                 std::cout << "Jogada inválida. Tente novamente.\n";
-                //jogador = (jogador == 'X') ? 'O' : 'X';
                 continue;
             }
                     
@@ -32,10 +29,7 @@ void jogar(JogoDeTabuleiro* jogo) {
             // Para jogos unidimensionais
             std::cout << "Turno do jogador " << jogador << " (coluna): ";
             std::cin >> coluna;
-            coluna -= 1; // Ajuste para o índice da coluna
-
-            
-            
+            coluna -= 1; // Ajuste para o índice da coluna  
             if (jogo->jogadaValida(coluna)) {
                 jogo->fazerJogada(coluna, jogador);
             } else {
@@ -60,7 +54,7 @@ void jogar(JogoDeTabuleiro* jogo) {
 
 int main() {
     int escolha;
-    std::cout << "Escolha o jogo:\n1. Reversi\n2. Lig4\n";
+    std::cout << "Escolha o jogo:\n1. Reversi\n2. Lig4\n3. JogoDaVelha\n";
     std::cin >> escolha;
 
     JogoDeTabuleiro* jogo = nullptr;
@@ -69,6 +63,8 @@ int main() {
         jogo = new Reversi();
     } else if (escolha == 2) {
         jogo = new Lig4();
+    } else if (escolha == 3) {
+        jogo = new JogoDaVelha();
     } else {
         std::cout << "Escolha inválida.\n";
         return 1;

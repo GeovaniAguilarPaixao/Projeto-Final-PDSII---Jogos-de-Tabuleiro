@@ -8,7 +8,6 @@ public:
     Reversi();
 
     bool jogadaValida(int linha, int coluna, char jogador) const;
-    
     bool fazerJogada(int linha, int coluna, char jogador) override;
     bool verificarVitoria(char jogador) const override;
     bool tabuleiroCheio() const override;
