@@ -45,12 +45,15 @@ bool Reversi::podeVirar(int linha, int coluna, int deltaLinha, int deltaColuna, 
     return encontrouOponente && dentroDoTabuleiro(i, j) && tabuleiro[i][j] == jogador;
 }
 
-void Reversi::fazerJogada(int linha, int coluna, char jogador) {
+bool Reversi::fazerJogada(int linha, int coluna, char jogador) {
+    
     if (!jogadaValida(linha, coluna, jogador)) {
         std::cout << "Jogada inválida\n";
-        return;
+        //jogador = (jogador == 'X') ? 'O' : 'X'
+        
+        return false;
     }
-
+    
     tabuleiro[linha][coluna] = jogador;
 
     const std::vector<std::pair<int, int>> direcoes = {
@@ -72,6 +75,7 @@ void Reversi::fazerJogada(int linha, int coluna, char jogador) {
             }
         }
     }
+    return true;
 }
 
 bool Reversi::verificarVitoria(char jogador) const {

@@ -35,11 +35,13 @@ bool JogoDeTabuleiro::jogadaValida(int linha, int coluna) const {
     return linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas && tabuleiro[linha][coluna] == '-';
 }
 
-void JogoDeTabuleiro::fazerJogada(int linha, int coluna, char jogador) {
+bool JogoDeTabuleiro::fazerJogada(int linha, int coluna, char jogador) {
     // Implementação padrão para jogos com duas dimensões
     if (jogadaValida(linha, coluna)) {
         tabuleiro[linha][coluna] = jogador;
+        return true;
     }
+    return false;
 }
 
 bool JogoDeTabuleiro::jogadaValida(int coluna) const {

@@ -8,7 +8,8 @@ public:
     Reversi();
 
     bool jogadaValida(int linha, int coluna, char jogador) const;
-    void fazerJogada(int linha, int coluna, char jogador) override;
+    
+    bool fazerJogada(int linha, int coluna, char jogador) override;
     bool verificarVitoria(char jogador) const override;
     bool tabuleiroCheio() const override;
     bool isBidimensional() const override { return true; }

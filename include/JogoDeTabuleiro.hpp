@@ -8,7 +8,8 @@ public:
     
     // Métodos para jogos com duas dimensões
     virtual bool jogadaValida(int linha, int coluna) const;
-    virtual void fazerJogada(int linha, int coluna, char jogador);
+
+    virtual bool fazerJogada(int linha, int coluna, char jogador);
     
     // Métodos para jogos com uma dimensão
     virtual bool jogadaValida(int coluna) const;

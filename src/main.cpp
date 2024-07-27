@@ -14,23 +14,35 @@ void jogar(JogoDeTabuleiro* jogo) {
             std::cin >> linha >> coluna;
             linha -= 1; // Ajuste para o índice da linha
             coluna -= 1; // Ajuste para o índice da coluna
+//tentando corrigir bug que passa para o próximo jogador após jogada invalida
+            
+            
             if (jogo->jogadaValida(linha, coluna)) {
-                jogo->fazerJogada(linha, coluna, jogador);
+                bool verificaComeu = jogo->fazerJogada(linha, coluna, jogador);
+                if(!verificaComeu){
+                    jogador = (jogador == 'X') ? 'O' : 'X';
+                }
             } else {
                 std::cout << "Jogada inválida. Tente novamente.\n";
+                //jogador = (jogador == 'X') ? 'O' : 'X';
                 continue;
             }
+                    
         } else {
             // Para jogos unidimensionais
             std::cout << "Turno do jogador " << jogador << " (coluna): ";
             std::cin >> coluna;
             coluna -= 1; // Ajuste para o índice da coluna
+
+            
+            
             if (jogo->jogadaValida(coluna)) {
                 jogo->fazerJogada(coluna, jogador);
             } else {
                 std::cout << "Jogada inválida. Tente novamente.\n";
                 continue;
             }
+         
         }
 
         if (jogo->verificarVitoria(jogador)) {
