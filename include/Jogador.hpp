@@ -21,7 +21,7 @@ public:
   std::string getApelido() const;
   std::string getNome() const;
   void listarEstatisticas() const;
-
+  void setEstatistica(std::string, int);
 };
 
 #endif // CLIENTE_HPP
