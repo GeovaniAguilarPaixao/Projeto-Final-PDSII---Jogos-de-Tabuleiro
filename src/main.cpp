@@ -16,8 +16,8 @@ void jogar(JogoDeTabuleiro* jogo) {
             linha -= 1; // Ajuste para o índice da linha
             coluna -= 1; // Ajuste para o índice da coluna
             if (jogo->jogadaValida(linha, coluna)) {
-                bool verificaComeu = jogo->fazerJogada(linha, coluna, jogador);
-                if(!verificaComeu){
+                bool verificaJogada = jogo->fazerJogada(linha, coluna, jogador);
+                if(!verificaJogada){
                     jogador = (jogador == 'X') ? 'O' : 'X';
                 }
             } else {
@@ -53,25 +53,78 @@ void jogar(JogoDeTabuleiro* jogo) {
 }
 
 int main() {
-    int escolha;
-    std::cout << "Escolha o jogo:\n1. Reversi\n2. Lig4\n3. JogoDaVelha\n";
-    std::cin >> escolha;
-
+    int escolha = -1;
+    char modo;
     JogoDeTabuleiro* jogo = nullptr;
 
-    if (escolha == 1) {
-        jogo = new Reversi();
-    } else if (escolha == 2) {
-        jogo = new Lig4();
-    } else if (escolha == 3) {
-        jogo = new JogoDaVelha();
-    } else {
-        std::cout << "Escolha inválida.\n";
-        return 1;
-    }
+    while (true) {
+        while (true) {
+            std::cout << "Escolha o jogo:\n1. Reversi\n2. Lig4\n3. JogoDaVelha\n4. Sair\n";
+            std::cin >> escolha;
 
-    jogar(jogo);
-    delete jogo;
+            if (escolha == 1) {
+                jogo = new Reversi();
+                break;
+            } else if (escolha == 2) {
+                jogo = new Lig4();
+                break;
+            } else if (escolha == 3) {
+                jogo = new JogoDaVelha();
+                break;
+            } else if (escolha == 4) {
+                break;
+            } else {
+                std::cout << "Escolha inválida.\n";
+            }
+        }
+
+        if (escolha == 4)
+            break;
+
+        if (escolha == 3) { // Jogo da Velha
+            std::cout << "Deseja jogar contra outro jogador ou contra a IA? (P/I): ";
+            std::cin >> modo;
+        }
+
+        char jogador = 'X';
+        while (!jogo->tabuleiroCheio()) {
+            jogo->imprimirTabuleiro();
+
+            int linha = -1, coluna = -1;
+
+            if (modo == 'I' && jogador == 'O') {
+                dynamic_cast<JogoDaVelha*>(jogo)->jogadaIA(jogador);  // IA faz a jogada
+            } else {
+                std::cout << "Turno do jogador " << jogador << " (linha coluna): ";
+                std::cin >> linha >> coluna;
+                linha -= 1;
+                coluna -= 1;
+
+                if (jogo->jogadaValida(linha, coluna)) {
+                    jogo->fazerJogada(linha, coluna, jogador);
+                } else {
+                    std::cout << "Jogada inválida. Tente novamente.\n";
+                    continue;
+                }
+            }
+
+            if (jogo->verificarVitoria(jogador)) {
+                jogo->imprimirTabuleiro();
+                std::cout << "Jogador " << jogador << " venceu!\n";
+                break;
+            }
+
+            jogador = (jogador == 'X') ? 'O' : 'X';
+        }
+
+        if (!jogo->verificarVitoria('X') && !jogo->verificarVitoria('O')) {
+            jogo->imprimirTabuleiro();
+            std::cout << "Empate!\n";
+        }
+
+        delete jogo;
+    }
 
     return 0;
 }
+

@@ -11,6 +11,8 @@ public:
     bool verificarVitoria(char jogador) const override;
     bool tabuleiroCheio() const override;
     bool isBidimensional() const override { return true; }
+
+    void jogadaIA(char jogador); 
 };
 
 #endif // JOGO_DA_VELHA_HPP

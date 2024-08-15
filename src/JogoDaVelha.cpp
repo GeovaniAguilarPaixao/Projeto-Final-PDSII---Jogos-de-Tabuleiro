@@ -36,3 +36,39 @@ bool JogoDaVelha::tabuleiroCheio() const {
     }
     return true;
 }
+void JogoDaVelha::jogadaIA(char jogador) {
+    for (int i = 0; i < linhas; ++i) {
+        for (int j = 0; j < colunas; ++j) {
+            if (jogadaValida(i, j)) {
+                tabuleiro[i][j] = jogador;
+                if (verificarVitoria(jogador)) {
+                    return;
+                }
+                tabuleiro[i][j] = '-';
+            }
+        }
+    }
+
+    char adversario = (jogador == 'X') ? 'O' : 'X';
+    for (int i = 0; i < linhas; ++i) {
+        for (int j = 0; j < colunas; ++j) {
+            if (jogadaValida(i, j)) {
+                tabuleiro[i][j] = adversario;
+                if (verificarVitoria(adversario)) {
+                    tabuleiro[i][j] = jogador;
+                    return;
+                }
+                tabuleiro[i][j] = '-';
+            }
+        }
+    }
+
+    while (true) {
+        int i = rand() % linhas;
+        int j = rand() % colunas;
+        if (jogadaValida(i, j)) {
+            tabuleiro[i][j] = jogador;
+            break;
+        }
+    }
+}
