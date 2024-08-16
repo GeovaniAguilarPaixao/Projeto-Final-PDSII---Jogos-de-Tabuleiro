@@ -10,7 +10,8 @@ void Jogada::carregarJogadores(std::string dir_data){
         for (const auto& file : std::filesystem::directory_iterator(dir_data)) {
             // confere se o conteúdo é um arquivo e se a extensão é .txt
             if (file.is_regular_file() && file.path().extension() == ".txt") {
-                std::ifstream f_jogador(file);
+                std::string filePath = file.path().string();
+                std::ifstream f_jogador(filePath);
                 if (!f_jogador.is_open()) {
                     continue;
                 }
