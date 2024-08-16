@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <fstream>
 #include <map>
 #include "Reversi.hpp"
@@ -149,12 +149,13 @@ int main() {
     }
     
     return 0;
-}
+}*/
 
-/*Teste Main SDL
+//Teste Main SDL
 
-#include <SDL2/SDL.h>
 #include <iostream>
+#include <SDL.h>
+#include <SDL_ttf.h>
 #include "JogoDaVelhaWidget.hpp"
 #include "Lig4Widget.hpp"
 #include "ReversiWidget.hpp"
@@ -165,18 +166,38 @@ const int SCREEN_HEIGHT = 480;
 
 enum JogoSelecionado { NONE, JOGO_DA_VELHA, LIG4, REVERSI };
 
-void renderMenu(SDL_Renderer* renderer, SDL_Rect botaoJogoDaVelha, SDL_Rect botaoLig4, SDL_Rect botaoReversi) {
+// Função para renderizar o texto ao lado dos botões
+void renderText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
+    SDL_Color color = { 0, 0, 0, 255 };  // Cor preta
+    SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+
+    SDL_Rect dstRect = { x, y, surface->w, surface->h };
+    SDL_RenderCopy(renderer, texture, NULL, &dstRect);
+
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+}
+
+void renderMenu(SDL_Renderer* renderer, TTF_Font* font, SDL_Rect botaoJogoDaVelha, SDL_Rect botaoLig4, SDL_Rect botaoReversi) {
     // Cor de fundo
     SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(renderer);
 
-    // Cor dos botões
-    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0xFF, 0xFF);
-
-    // Renderizar os botões
+    // Cor e renderização dos botões
+    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0xFF, 0xFF); // Azul
     SDL_RenderFillRect(renderer, &botaoJogoDaVelha);
+
+    SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF); // Vermelho
     SDL_RenderFillRect(renderer, &botaoLig4);
+
+    SDL_SetRenderDrawColor(renderer, 0x00, 0xFF, 0x00, 0xFF); // Verde
     SDL_RenderFillRect(renderer, &botaoReversi);
+
+    // Renderizar os textos ao lado dos botões
+    renderText(renderer, font, "Jogo da Velha", botaoJogoDaVelha.x + botaoJogoDaVelha.w + 10, botaoJogoDaVelha.y + 10);
+    renderText(renderer, font, "Lig4", botaoLig4.x + botaoLig4.w + 10, botaoLig4.y + 10);
+    renderText(renderer, font, "Reversi", botaoReversi.x + botaoReversi.w + 10, botaoReversi.y + 10);
 
     // Renderizar o que foi preparado
     SDL_RenderPresent(renderer);
@@ -189,6 +210,12 @@ int main(int argc, char* args[]) {
         return -1;
     }
 
+    // Inicializar TTF
+    if (TTF_Init() == -1) {
+        SDL_Log("Não foi possível inicializar TTF: %s", TTF_GetError());
+        return -1;
+    }
+
     SDL_Window* window = SDL_CreateWindow("Menu de Jogos", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
@@ -197,10 +224,17 @@ int main(int argc, char* args[]) {
         return -1;
     }
 
+    // Carregar a fonte
+    TTF_Font* font = TTF_OpenFont("./light-arial.ttf", 24);
+    if (!font) {
+        SDL_Log("Não foi possível carregar a fonte: %s", TTF_GetError());
+        return -1;
+    }
+
     // Definir os botões para os jogos
-    SDL_Rect botaoJogoDaVelha = { 200, 100, 240, 60 };
-    SDL_Rect botaoLig4 = { 200, 200, 240, 60 };
-    SDL_Rect botaoReversi = { 200, 300, 240, 60 };
+    SDL_Rect botaoJogoDaVelha = { 100, 100, 60, 60 };
+    SDL_Rect botaoLig4 = { 100, 200, 60, 60 };
+    SDL_Rect botaoReversi = { 100, 300, 60, 60 };
 
     bool quit = false;
     SDL_Event e;
@@ -208,7 +242,7 @@ int main(int argc, char* args[]) {
 
     while (!quit) {
         // Renderizar o menu
-        renderMenu(renderer, botaoJogoDaVelha, botaoLig4, botaoReversi);
+        renderMenu(renderer, font, botaoJogoDaVelha, botaoLig4, botaoReversi);
 
         // Loop de eventos
         while (SDL_PollEvent(&e) != 0) {
@@ -218,11 +252,13 @@ int main(int argc, char* args[]) {
                 int x, y;
                 SDL_GetMouseState(&x, &y);
 
-                if (SDL_PointInRect(&SDL_Point{x, y}, &botaoJogoDaVelha)) {
+                SDL_Point ponto = { x, y };
+
+                if (SDL_PointInRect(&ponto, &botaoJogoDaVelha)) {
                     jogoSelecionado = JOGO_DA_VELHA;
-                } else if (SDL_PointInRect(&SDL_Point{x, y}, &botaoLig4)) {
+                } else if (SDL_PointInRect(&ponto, &botaoLig4)) {
                     jogoSelecionado = LIG4;
-                } else if (SDL_PointInRect(&SDL_Point{x, y}, &botaoReversi)) {
+                } else if (SDL_PointInRect(&ponto, &botaoReversi)) {
                     jogoSelecionado = REVERSI;
                 }
 
@@ -234,29 +270,27 @@ int main(int argc, char* args[]) {
 
         // Iniciar o jogo selecionado
         if (jogoSelecionado != NONE) {
-            JogoDeTabuleiro* jogo = nullptr;
             if (jogoSelecionado == JOGO_DA_VELHA) {
                 JogoDaVelhaWidget jogoDaVelhaWidget(renderer);
-                jogo = &jogoDaVelhaWidget;
+                jogoDaVelhaWidget.jogar();
             } else if (jogoSelecionado == LIG4) {
                 Lig4Widget lig4Widget(renderer);
-                jogo = &lig4Widget;
+                lig4Widget.jogar();
             } else if (jogoSelecionado == REVERSI) {
                 ReversiWidget reversiWidget(renderer);
-                jogo = &reversiWidget;
-            }
-
-            if (jogo) {
-                jogo->jogar();  // Implementar a lógica de jogar no widget
+                reversiWidget.jogar();
             }
 
             jogoSelecionado = NONE;  // Voltar ao menu após o término do jogo
         }
     }
 
+    // Limpeza
+    TTF_CloseFont(font);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
+    TTF_Quit();
 
     return 0;
-}*/
+}

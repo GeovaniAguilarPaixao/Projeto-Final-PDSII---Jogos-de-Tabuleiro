@@ -1,7 +1,7 @@
 # Compilador e flags
 CXX = g++
 override CXXFLAGS += -g -Wall -Werror -std=c++17 `sdl2-config --cflags`
-LDFLAGS = `sdl2-config --libs`
+LDFLAGS = `sdl2-config --libs` -lSDL2_ttf
 
 # Diretórios
 SRC_DIR = src
