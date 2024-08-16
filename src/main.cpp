@@ -1,7 +1,10 @@
 #include <iostream>
+#include <fstream>
+#include <map>
 #include "Reversi.hpp"
 #include "Lig4.hpp"
 #include "JogoDaVelha.hpp"
+
 
 void jogar(JogoDeTabuleiro* jogo) {
     char jogador = 'X';
@@ -24,7 +27,7 @@ void jogar(JogoDeTabuleiro* jogo) {
                 std::cout << "Jogada inválida. Tente novamente.\n";
                 continue;
             }
-                    
+
         } else {
             // Para jogos unidimensionais
             std::cout << "Turno do jogador " << jogador << " (coluna): ";
@@ -36,7 +39,7 @@ void jogar(JogoDeTabuleiro* jogo) {
                 std::cout << "Jogada inválida. Tente novamente.\n";
                 continue;
             }
-         
+
         }
 
         if (jogo->verificarVitoria(jogador)) {
@@ -127,4 +130,3 @@ int main() {
 
     return 0;
 }
-

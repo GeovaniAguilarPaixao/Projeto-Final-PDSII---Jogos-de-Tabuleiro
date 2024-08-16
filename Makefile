@@ -17,7 +17,7 @@ HEADERS = $(shell find $(INCLUDE_DIR) -type f -name '*.hpp')
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 # Executáveis
-EXEC = $(BIN_DIR)/main
+EXEC = $(BIN_DIR)/main.exe
 EXEC_DEBUG = $(BIN_DIR)/main-debug
 
 # Regra padrão

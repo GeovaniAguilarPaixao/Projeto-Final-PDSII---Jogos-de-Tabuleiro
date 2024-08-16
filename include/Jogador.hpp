@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <array>
+#include <fstream>
 
 class Jogador {
 private:
@@ -15,13 +16,18 @@ private:
   std::map<std::string, std::array<int, 3>> estatisticas;
 
 public:
-
-  Jogador(std::string, std::string);
-  ~Jogador();
+ Jogador(const std::string& apelido, const std::string& nome);
+ Jogador() = default;  // Construtor padrão para leitura de arquivos
+ ~Jogador() = default;
+  //Jogador(std::string, std::string);
+  //~Jogador();
   std::string getApelido() const;
   std::string getNome() const;
   void listarEstatisticas() const;
   void setEstatistica(std::string, int);
+  void salvar(std::ofstream& out) const;
+  void carregar(std::ifstream& in);
+  
 };
 
 #endif // CLIENTE_HPP
