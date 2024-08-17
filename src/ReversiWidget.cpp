@@ -3,15 +3,12 @@
 #include <cmath>
 #include <iostream>
 
-ReversiWidget::ReversiWidget(SDL_Renderer* renderer)
-    : renderer(renderer), larguraCelula(50), alturaCelula(50) {
+ReversiWidget::ReversiWidget(SDL_Renderer* renderer, TTF_Font* fonte)
+    : renderer(renderer), fonte(fonte), larguraCelula(50), alturaCelula(50) {
     // Inicializar SDL_ttf
     if (TTF_Init() == -1) {
         std::cerr << "Erro ao inicializar SDL_ttf: " << TTF_GetError() << std::endl;
     }
-
-    // Substitua pelo caminho para a sua fonte
-    fonte = TTF_OpenFont("./light-arial.ttf", 24);
     if (!fonte) {
         std::cerr << "Não foi possível carregar a fonte: " << TTF_GetError() << std::endl;
     }

@@ -8,7 +8,7 @@
 
 class JogoDaVelhaWidget : public JogoDaVelha {
 public:
-    JogoDaVelhaWidget(SDL_Renderer* renderer);
+    JogoDaVelhaWidget(SDL_Renderer* renderer, TTF_Font* fonte);
     ~JogoDaVelhaWidget();
 
     void desenhar();

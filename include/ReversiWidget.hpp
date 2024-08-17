@@ -8,7 +8,7 @@
 
 class ReversiWidget : public Reversi {
 public:
-    ReversiWidget(SDL_Renderer* renderer);
+    ReversiWidget(SDL_Renderer* renderer, TTF_Font* fonte);
     ~ReversiWidget();
 
     void desenhar();

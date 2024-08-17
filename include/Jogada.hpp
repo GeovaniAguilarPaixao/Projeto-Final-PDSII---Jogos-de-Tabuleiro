@@ -24,6 +24,7 @@ public:
   void removerJogador(std::string, std::string);
   void listarJogadores() const;
   Jogador* selecionarJogador(std::string apelido) const;
+  const std::map<std::string, std::unique_ptr<Jogador>>& getJogadores() const;
 
 };
 

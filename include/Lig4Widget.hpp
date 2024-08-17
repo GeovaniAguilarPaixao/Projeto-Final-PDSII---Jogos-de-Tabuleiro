@@ -8,7 +8,7 @@
 
 class Lig4Widget : public Lig4 {
 public:
-    Lig4Widget(SDL_Renderer* renderer);
+    Lig4Widget(SDL_Renderer* renderer, TTF_Font* fonte);
     ~Lig4Widget();
 
     void desenhar();

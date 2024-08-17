@@ -2,13 +2,12 @@
 #include "SDLUtils.hpp"
 #include <iostream>
 
-JogoDaVelhaWidget::JogoDaVelhaWidget(SDL_Renderer* renderer) 
-    : renderer(renderer), larguraCelula(100), alturaCelula(100) {
+JogoDaVelhaWidget::JogoDaVelhaWidget(SDL_Renderer* renderer, TTF_Font* fonte) 
+    : renderer(renderer), fonte(fonte), larguraCelula(100), alturaCelula(100) {
     // Inicializar SDL_ttf
     if (TTF_Init() == -1) {
         std::cerr << "Erro ao inicializar SDL_ttf: " << TTF_GetError() << std::endl;
     }
-    fonte = TTF_OpenFont("./light-arial.ttf", 24);
     // Substitua pelo caminho para a sua fonte
     if (!fonte) {
         std::cerr << "Não foi possível carregar a fonte: " << TTF_GetError() << std::endl;

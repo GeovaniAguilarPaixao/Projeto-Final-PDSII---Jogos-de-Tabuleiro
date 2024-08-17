@@ -24,6 +24,10 @@ void Jogada::carregarJogadores(std::string dir_data){
     }
 }
 
+const std::map<std::string, std::unique_ptr<Jogador>>& Jogada::getJogadores() const {
+    return jogadores;
+}
+
 void Jogada::salvarJogadores(std::string dir_data) const{
     // confere se o caminho existe e é um diretório
     if (!std::filesystem::exists(dir_data) || !std::filesystem::is_directory(dir_data)) {
