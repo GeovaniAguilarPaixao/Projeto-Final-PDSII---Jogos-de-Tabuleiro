@@ -30,4 +30,4 @@ public:
   
 };
 
-#endif // CLIENTE_HPP
+#endif // JOGADOR_HPP

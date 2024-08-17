@@ -84,3 +84,15 @@ void Jogada::listarJogadores() const {
         it.second->listarEstatisticas();
     }
 }
+
+Jogador* Jogada::selecionarJogador(std::string apelido) const {
+    auto it =  this->jogadores.find(apelido);
+    // caso o jogador exista
+    if (it != this->jogadores.end()) {
+        return it->second.get();
+    }
+    // caso jogador não exista
+    else {
+        return nullptr;
+    }
+}

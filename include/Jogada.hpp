@@ -9,14 +9,12 @@
 #include <memory>
 
 #include "Jogador.hpp"
-#include "JogoDeTabuleiro.hpp"
 
 class Jogada {
 
 private:
 
   std::map<std::string,std::unique_ptr<Jogador>> jogadores;
-  std::vector<std::unique_ptr<JogoDeTabuleiro*>> jogos;
 
 public:
   Jogada() = default;
@@ -25,8 +23,7 @@ public:
   void adicionarJogador(std::string, std::string);
   void removerJogador(std::string, std::string);
   void listarJogadores() const;
-  //void incluirJogo();
-  //void executarPartida() const;
+  Jogador* selecionarJogador(std::string apelido) const;
 
 };
 
