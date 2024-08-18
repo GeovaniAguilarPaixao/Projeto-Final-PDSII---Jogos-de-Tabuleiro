@@ -178,30 +178,47 @@ void renderText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x,
     SDL_DestroyTexture(texture);
 }
 
-void renderMenu(SDL_Renderer* renderer, TTF_Font* font, SDL_Rect botaoJogoDaVelha, SDL_Rect botaoLig4, SDL_Rect botaoReversi, SDL_Rect botaoJogada, SDL_Rect botaoSair) {
+void renderMenu(SDL_Renderer* renderer, TTF_Font* font, SDL_Rect botaoJogoDaVelha, SDL_Rect botaoLig4, SDL_Rect botaoReversi, SDL_Rect botaoJogada, SDL_Rect botaoSair, SDL_Point mousePos) {
     SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(renderer);
 
-    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0xFF, 0xFF);
-    SDL_RenderFillRect(renderer, &botaoJogoDaVelha);
+    auto renderButton = [&](SDL_Rect botao, const char* text, SDL_Color color, SDL_Color hoverColor){
+        if(SDL_PointInRect(&mousePos, &botao)){
+        SDL_SetRenderDrawColor(renderer, hoverColor.r, hoverColor.g, hoverColor.b, hoverColor.a);
+        }else{
+        SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+        }
+        SDL_RenderFillRect(renderer, &botao);
+        renderText(renderer, font, text, botao.x + botao.w / 2, botao.y + botao.h / 2);
+    };
 
-    SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);
-    SDL_RenderFillRect(renderer, &botaoLig4);
+    renderButton(botaoJogoDaVelha, "Jogo da Velha", { 0x00, 0x00, 0xFF, 0xFF }, { 0x00, 0x00, 0xAA, 0xFF });
+    renderButton(botaoLig4, "Lig4", { 0xFF, 0x00, 0x00, 0xFF }, { 0xAA, 0x00, 0x00, 0xFF });
+    renderButton(botaoReversi, "Reversi", { 0x00, 0xFF, 0x00, 0xFF }, { 0x00, 0xAA, 0x00, 0xFF });
+    renderButton(botaoJogada, "Jogadores", { 0xFF, 0xA5, 0x00, 0xFF }, { 0xAA, 0x69, 0x00, 0xFF });
+    renderButton(botaoSair, "Sair", { 0x80, 0x00, 0x80, 0xFF }, { 0x60, 0x00, 0x60, 0xFF });
 
-    SDL_SetRenderDrawColor(renderer, 0x00, 0xFF, 0x00, 0xFF);
-    SDL_RenderFillRect(renderer, &botaoReversi);
+    
+//    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0xFF, 0xFF);
+//    SDL_RenderFillRect(renderer, &botaoJogoDaVelha);
 
-    SDL_SetRenderDrawColor(renderer, 0xFF, 0xA5, 0x00, 0xFF); // Cor diferente para o botão de Jogadores
-    SDL_RenderFillRect(renderer, &botaoJogada);
+//    SDL_SetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);
+//    SDL_RenderFillRect(renderer, &botaoLig4);
 
-    SDL_SetRenderDrawColor(renderer, 0x80, 0x00, 0x80, 0xFF); // Cor diferente para o botão de Sair
-    SDL_RenderFillRect(renderer, &botaoSair);
+//    SDL_SetRenderDrawColor(renderer, 0x00, 0xFF, 0x00, 0xFF);
+//    SDL_RenderFillRect(renderer, &botaoReversi);
 
-    renderText(renderer, font, "Jogo da Velha", botaoJogoDaVelha.x + 10, botaoJogoDaVelha.y + 10);
-    renderText(renderer, font, "Lig4", botaoLig4.x + 10, botaoLig4.y + 10);
-    renderText(renderer, font, "Reversi", botaoReversi.x + 10, botaoReversi.y + 10);
-    renderText(renderer, font, "Jogadores", botaoJogada.x + 10, botaoJogada.y + 10);
-    renderText(renderer, font, "Sair", botaoSair.x + 10, botaoSair.y + 10);
+//    SDL_SetRenderDrawColor(renderer, 0xFF, 0xA5, 0x00, 0xFF); // Cor diferente para o botão de Jogadores
+//    SDL_RenderFillRect(renderer, &botaoJogada);
+
+//    SDL_SetRenderDrawColor(renderer, 0x80, 0x00, 0x80, 0xFF); // Cor diferente para o botão de Sair
+//    SDL_RenderFillRect(renderer, &botaoSair);
+
+//    renderText(renderer, font, "Jogo da Velha", botaoJogoDaVelha.x + 10, botaoJogoDaVelha.y + 10);
+//    renderText(renderer, font, "Lig4", botaoLig4.x + 10, botaoLig4.y + 10);
+//    renderText(renderer, font, "Reversi", botaoReversi.x + 10, botaoReversi.y + 10);
+//    renderText(renderer, font, "Jogadores", botaoJogada.x + 10, botaoJogada.y + 10);
+//    renderText(renderer, font, "Sair", botaoSair.x + 10, botaoSair.y + 10);
 
     SDL_RenderPresent(renderer);
 }
@@ -229,7 +246,7 @@ int main(int argc, char* args[]) {
         return 1;
     }
 
-    TTF_Font* font = TTF_OpenFont("arial.ttf", 24);
+    TTF_Font* font = TTF_OpenFont("light-arial.ttf", 24);
     if (!font) {
         std::cerr << "Erro ao carregar fonte: " << TTF_GetError() << std::endl;
         return 1;
@@ -250,26 +267,30 @@ int main(int argc, char* args[]) {
     ReversiWidget reversi(renderer, font);
     JogadaWidget jogadaWidget(renderer, font, "data");
 
+    SDL_Point mousePos;
+    
     while (!sair) {
         while (SDL_PollEvent(&e) != 0) {
             if (e.type == SDL_QUIT) {
                 sair = true;
-            } else if (e.type == SDL_MOUSEBUTTONDOWN) {
-                int x, y;
-                SDL_GetMouseState(&x, &y);
-
+            } else if (e.type == SDL_MOUSEMOTION) {
+                
+                SDL_GetMouseState(&mousePos.x, &mousePos.
+                    y);
+            }else if(e.type == SDL_MOUSEBUTTONDOWN){
+                SDL_GetMouseState(&mousePos.x, &mousePos.y);
                 // Corrigido: usar variáveis temporárias para os pontos
-                SDL_Point pontoClique = {x, y};
+                //SDL_Point pontoClique = {x, y};
 
-                if (SDL_PointInRect(&pontoClique, &botaoJogoDaVelha)) {
+                if (SDL_PointInRect(&mousePos, &botaoJogoDaVelha)) {
                     jogoAtual = JOGO_DA_VELHA;
-                } else if (SDL_PointInRect(&pontoClique, &botaoLig4)) {
+                } else if (SDL_PointInRect(&mousePos, &botaoLig4)) {
                     jogoAtual = LIG4;
-                } else if (SDL_PointInRect(&pontoClique, &botaoReversi)) {
+                } else if (SDL_PointInRect(&mousePos, &botaoReversi)) {
                     jogoAtual = REVERSI;
-                } else if (SDL_PointInRect(&pontoClique, &botaoJogada)) {
+                } else if (SDL_PointInRect(&mousePos, &botaoJogada)) {
                     jogoAtual = JOGADA;
-                } else if (SDL_PointInRect(&pontoClique, &botaoSair)) {
+                } else if (SDL_PointInRect(&mousePos, &botaoSair)) {
                     sair = true;
                 }
             }
@@ -289,7 +310,7 @@ int main(int argc, char* args[]) {
                 jogadaWidget.desenhar();
                 break;
             default:
-                renderMenu(renderer, font, botaoJogoDaVelha, botaoLig4, botaoReversi, botaoJogada, botaoSair);
+                renderMenu(renderer, font, botaoJogoDaVelha, botaoLig4, botaoReversi, botaoJogada, botaoSair, mousePos);
                 break;
         }
     }
