@@ -21,7 +21,8 @@ void Jogada::carregarJogadores(std::string dir_data){
                 }
                 // Instancia um ponteiro inteligente uníco para jogador 
                 // std::unique_ptr<Jogador> jogador = std::make_unique<Jogador>();
-                std::unique_ptr<Jogador> jogador (new Jogador());
+                // std::unique_ptr<Jogador> jogador (new Jogador());
+                std::shared_ptr<Jogador> jogador (new Jogador());
                 // Carrega as informações do jogador
                 jogador->carregar(f_jogador);
                 // Fecha o arquivo
@@ -33,9 +34,14 @@ void Jogada::carregarJogadores(std::string dir_data){
     }
 }
 
-const std::map<std::string, std::unique_ptr<Jogador>>& Jogada::getJogadores() const {
-    return jogadores;
+//const std::map<std::string, std::unique_ptr<Jogador>>& Jogada::getJogadores() const {
+//    return this->jogadores;
+//}
+
+const std::map<std::string, std::shared_ptr<Jogador>>& Jogada::getJogadores() const {
+    return this->jogadores;
 }
+
 // Salva os dados dos jogadores no diretório dir_data recebido como parâmetro
 void Jogada::salvarJogadores(std::string dir_data) const{
     // Confere se o caminho existe e é um diretório
@@ -76,7 +82,8 @@ void Jogada::adicionarJogador(std::string apelido, std::string nome) {
     else {
         // Inicializa um novo ponteiro inteligente unico para o jogador
         // std::unique_ptr<Jogador> jogador = std::make_unique<Jogador>(apelido, nome);
-        std::unique_ptr<Jogador> jogador (new Jogador(apelido, nome));
+        //std::unique_ptr<Jogador> jogador (new Jogador(apelido, nome));
+        std::shared_ptr<Jogador> jogador (new Jogador(apelido, nome));
         // Adicionar o novo jogador ao map de jogadores da jogada
         // O apelido é a chave única e o valor é o ponteiro para o objeto
         this->jogadores[jogador->getApelido()] = std::move(jogador);

@@ -16,7 +16,8 @@ private:
   // Armazena os jogadores da jogada em um map, no qual:
   // chave única: apelido do jogador
   // valor: ponteiro inteligente único para o objeto Jogador
-  std::map<std::string,std::unique_ptr<Jogador>> jogadores;
+  //std::map<std::string,std::unique_ptr<Jogador>> jogadores;
+  std::map<std::string,std::shared_ptr<Jogador>> jogadores;
 
 public:
   Jogada() = default;
@@ -32,7 +33,8 @@ public:
   void listarJogadores() const;
   // Seleciona um jogador da jogada
   Jogador* selecionarJogador(std::string apelido) const;
-  const std::map<std::string, std::unique_ptr<Jogador>>& getJogadores() const;
+  //const std::map<std::string, std::unique_ptr<Jogador>>& getJogadores() const;
+  const std::map<std::string, std::shared_ptr<Jogador>>& getJogadores() const;
 
 };
 
