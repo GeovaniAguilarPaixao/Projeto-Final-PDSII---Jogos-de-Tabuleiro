@@ -1,0 +1,88 @@
+\hypertarget{main_8cpp}{}\doxysection{src/main.cpp File Reference}
+\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$S\+D\+L.\+h$>$}\newline
+{\ttfamily \#include $<$S\+D\+L\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include \char`\"{}Jogo\+Da\+Velha\+Widget.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Lig4\+Widget.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Reversi\+Widget.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Jogada\+Widget.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Menu\+State.\+hpp\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_aa9c67d82f7b7e7ba13aa6f21bb57189d}{render\+Button}} (S\+D\+L\+\_\+\+Renderer $\ast$renderer, S\+D\+L\+\_\+\+Rect rect, S\+D\+L\+\_\+\+Color color)
+\item 
+void \mbox{\hyperlink{main_8cpp_afa278ab47d2e16ac6e04d3fc57beaede}{render\+Text}} (S\+D\+L\+\_\+\+Renderer $\ast$renderer, T\+T\+F\+\_\+\+Font $\ast$font, const char $\ast$text, int x, int y, S\+D\+L\+\_\+\+Color color)
+\item 
+void \mbox{\hyperlink{main_8cpp_a190cf0055b2d0204b085ab89263b5128}{render\+Main\+Menu}} (S\+D\+L\+\_\+\+Renderer $\ast$renderer, T\+T\+F\+\_\+\+Font $\ast$font)
+\item 
+void \mbox{\hyperlink{main_8cpp_aa71dc292391e098fd54b3b3b57ba0131}{render\+Jogadores\+Menu}} (S\+D\+L\+\_\+\+Renderer $\ast$renderer, T\+T\+F\+\_\+\+Font $\ast$font)
+\item 
+void \mbox{\hyperlink{main_8cpp_a24bff11ea42ef941c1cb93bbfa3378de}{render\+Jogos\+Menu}} (S\+D\+L\+\_\+\+Renderer $\ast$renderer, T\+T\+F\+\_\+\+Font $\ast$font)
+\item 
+int \mbox{\hyperlink{main_8cpp_a700a0caa5b70a06d1064e576f9f3cf65}{main}} (int argc, char $\ast$args\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{main_8cpp_a3482785bd2a4c8b307f9e0b6f54e2c36}{S\+C\+R\+E\+E\+N\+\_\+\+W\+I\+D\+TH}} = 640
+\item 
+const int \mbox{\hyperlink{main_8cpp_ab454541ae58bcf6555e8d723b1eb95e7}{S\+C\+R\+E\+E\+N\+\_\+\+H\+E\+I\+G\+HT}} = 480
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_a700a0caa5b70a06d1064e576f9f3cf65}\label{main_8cpp_a700a0caa5b70a06d1064e576f9f3cf65}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{args\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_aa9c67d82f7b7e7ba13aa6f21bb57189d}\label{main_8cpp_aa9c67d82f7b7e7ba13aa6f21bb57189d}} 
+\index{main.cpp@{main.cpp}!renderButton@{renderButton}}
+\index{renderButton@{renderButton}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{renderButton()}{renderButton()}}
+{\footnotesize\ttfamily void render\+Button (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{S\+D\+L\+\_\+\+Rect}]{rect,  }\item[{S\+D\+L\+\_\+\+Color}]{color }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_aa71dc292391e098fd54b3b3b57ba0131}\label{main_8cpp_aa71dc292391e098fd54b3b3b57ba0131}} 
+\index{main.cpp@{main.cpp}!renderJogadoresMenu@{renderJogadoresMenu}}
+\index{renderJogadoresMenu@{renderJogadoresMenu}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{renderJogadoresMenu()}{renderJogadoresMenu()}}
+{\footnotesize\ttfamily void render\+Jogadores\+Menu (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{T\+T\+F\+\_\+\+Font $\ast$}]{font }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_a24bff11ea42ef941c1cb93bbfa3378de}\label{main_8cpp_a24bff11ea42ef941c1cb93bbfa3378de}} 
+\index{main.cpp@{main.cpp}!renderJogosMenu@{renderJogosMenu}}
+\index{renderJogosMenu@{renderJogosMenu}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{renderJogosMenu()}{renderJogosMenu()}}
+{\footnotesize\ttfamily void render\+Jogos\+Menu (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{T\+T\+F\+\_\+\+Font $\ast$}]{font }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_a190cf0055b2d0204b085ab89263b5128}\label{main_8cpp_a190cf0055b2d0204b085ab89263b5128}} 
+\index{main.cpp@{main.cpp}!renderMainMenu@{renderMainMenu}}
+\index{renderMainMenu@{renderMainMenu}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{renderMainMenu()}{renderMainMenu()}}
+{\footnotesize\ttfamily void render\+Main\+Menu (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{T\+T\+F\+\_\+\+Font $\ast$}]{font }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_afa278ab47d2e16ac6e04d3fc57beaede}\label{main_8cpp_afa278ab47d2e16ac6e04d3fc57beaede}} 
+\index{main.cpp@{main.cpp}!renderText@{renderText}}
+\index{renderText@{renderText}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{renderText()}{renderText()}}
+{\footnotesize\ttfamily void render\+Text (\begin{DoxyParamCaption}\item[{S\+D\+L\+\_\+\+Renderer $\ast$}]{renderer,  }\item[{T\+T\+F\+\_\+\+Font $\ast$}]{font,  }\item[{const char $\ast$}]{text,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{S\+D\+L\+\_\+\+Color}]{color }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8cpp_ab454541ae58bcf6555e8d723b1eb95e7}\label{main_8cpp_ab454541ae58bcf6555e8d723b1eb95e7}} 
+\index{main.cpp@{main.cpp}!SCREEN\_HEIGHT@{SCREEN\_HEIGHT}}
+\index{SCREEN\_HEIGHT@{SCREEN\_HEIGHT}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_HEIGHT}{SCREEN\_HEIGHT}}
+{\footnotesize\ttfamily const int S\+C\+R\+E\+E\+N\+\_\+\+H\+E\+I\+G\+HT = 480}
+
+\mbox{\Hypertarget{main_8cpp_a3482785bd2a4c8b307f9e0b6f54e2c36}\label{main_8cpp_a3482785bd2a4c8b307f9e0b6f54e2c36}} 
+\index{main.cpp@{main.cpp}!SCREEN\_WIDTH@{SCREEN\_WIDTH}}
+\index{SCREEN\_WIDTH@{SCREEN\_WIDTH}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_WIDTH}{SCREEN\_WIDTH}}
+{\footnotesize\ttfamily const int S\+C\+R\+E\+E\+N\+\_\+\+W\+I\+D\+TH = 640}
+

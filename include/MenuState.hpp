@@ -1,0 +1,15 @@
+#ifndef MENUSTATE_HPP
+#define MENUSTATE_HPP
+
+enum MenuState {
+    MAIN_MENU,
+    JOGADORES_MENU,
+    JOGOS_MENU,
+    ADD_JOGADOR,
+    LIST_JOGADORES,
+    JOGO_DA_VELHA,
+    LIG4,
+    REVERSI
+};
+
+#endif // MENUSTATE_HPP

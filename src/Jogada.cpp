@@ -1,6 +1,6 @@
 #include "Jogada.hpp"
 
-// Carrega todos os dados de jogadores armazenados no diretório dir_data recebido como parâmetro
+// Carrega os dados de jogadores armazenados no diretório dir_data
 void Jogada::carregarJogadores(std::string dir_data){
     // Confere se o caminho existe e é um diretório
     if (!std::filesystem::exists(dir_data) || !std::filesystem::is_directory(dir_data)) {
@@ -19,30 +19,25 @@ void Jogada::carregarJogadores(std::string dir_data){
                 if (!f_jogador.is_open()) {
                     continue;
                 }
-                // Instancia um ponteiro inteligente uníco para jogador 
-                // std::unique_ptr<Jogador> jogador = std::make_unique<Jogador>();
-                // std::unique_ptr<Jogador> jogador (new Jogador());
+                // Instancia um ponteiro inteligente para jogador 
                 std::shared_ptr<Jogador> jogador (new Jogador());
                 // Carrega as informações do jogador
                 jogador->carregar(f_jogador);
                 // Fecha o arquivo
                 f_jogador.close();
-                // Adiciona (move) o ponteiro inteligente único do jogador ao map de jogadores da jogada
+                // Move o ponteiro inteligente para o map de jogadores
                 this->jogadores[jogador->getApelido()] = std::move(jogador);
             }
         }
     }
 }
 
-//const std::map<std::string, std::unique_ptr<Jogador>>& Jogada::getJogadores() const {
-//    return this->jogadores;
-//}
-
+// Retorna o map de jogadores
 const std::map<std::string, std::shared_ptr<Jogador>>& Jogada::getJogadores() const {
     return this->jogadores;
 }
 
-// Salva os dados dos jogadores no diretório dir_data recebido como parâmetro
+// Salva os dados dos jogadores no diretório dir_data
 void Jogada::salvarJogadores(std::string dir_data) const{
     // Confere se o caminho existe e é um diretório
     if (!std::filesystem::exists(dir_data) || !std::filesystem::is_directory(dir_data)) {
@@ -52,7 +47,7 @@ void Jogada::salvarJogadores(std::string dir_data) const{
     else {
         // Iterador para percorrer o map de jogadores
         for (const auto& it : this->jogadores) {
-            // Define o caminho e o nome do arquivo, sendo o nome o apelido do jogador
+            // Define o caminho e o nome do arquivo
             std::string nome_arquivo = dir_data + "/" + it.second->getApelido() + ".txt";
             // Abre o arquivo para escrita
             std::ofstream f_jogador(nome_arquivo);
@@ -72,7 +67,7 @@ void Jogada::salvarJogadores(std::string dir_data) const{
 }
 // Adiciona um jogador à jogada
 void Jogada::adicionarJogador(std::string apelido, std::string nome) {
-    // Verifica se já existe jogador com o mesmo apelido na jogada
+    // Verifica se já existe jogador com o mesmo apelido
     auto it =  this->jogadores.find(apelido);
     // Caso o jogador já exista
     if (it != this->jogadores.end()) {
@@ -80,11 +75,9 @@ void Jogada::adicionarJogador(std::string apelido, std::string nome) {
     }
     // Caso jogador não exista
     else {
-        // Inicializa um novo ponteiro inteligente unico para o jogador
-        // std::unique_ptr<Jogador> jogador = std::make_unique<Jogador>(apelido, nome);
-        //std::unique_ptr<Jogador> jogador (new Jogador(apelido, nome));
+        // Inicializa um novo ponteiro inteligente para o jogador
         std::shared_ptr<Jogador> jogador (new Jogador(apelido, nome));
-        // Adicionar o novo jogador ao map de jogadores da jogada
+        // Adiciona o novo jogador ao map de jogadores da jogada
         // O apelido é a chave única e o valor é o ponteiro para o objeto
         this->jogadores[jogador->getApelido()] = std::move(jogador);
         std::cout << "Jogador " << apelido << " cadastrado com sucesso" << std::endl;
@@ -92,7 +85,7 @@ void Jogada::adicionarJogador(std::string apelido, std::string nome) {
 }
 // Remove um jogador da jogada
 void Jogada::removerJogador(std::string apelido, std::string dir_data) {
-    // Verifica se existe jogador com o apelido recebido como parâmetro
+    // Verifica se existe jogador com o apelido
     auto it =  this->jogadores.find(apelido);
     // Caso exista jogador com o apelido
     if (it != this->jogadores.end()) {
@@ -103,9 +96,9 @@ void Jogada::removerJogador(std::string apelido, std::string dir_data) {
         // Exclui o arquivo com as estatísticas do jogador
         if (std::filesystem::remove(f_jogador)) {
             // caso arquivo seja excluido: retorna true
-            // caso arquivo não exista: retorna false (pode acontecer se jogador for criado e excluido em uma mesma execucao)
+            // caso arquivo não exista: retorna false (pode acontecer se jogador for criado e excluido sem que o método salvarJogadores() seja chamado)
         }
-        this->jogadores.erase(it);
+        this->jogadores.erase(apelido);
         std::cout << "Jogador " << apelido << " removido com sucesso" << std::endl;
 
     }
@@ -123,7 +116,7 @@ void Jogada::listarJogadores() const {
 }
 // Seleciona um jogador da jogada a partir do apelido
 Jogador* Jogada::selecionarJogador(std::string apelido) const {
-    // Procura o jogador a partir do apelido passado como parâmetro
+    // Procura o jogador
     auto it =  this->jogadores.find(apelido);
     // Caso o jogador exista
     if (it != this->jogadores.end()) {

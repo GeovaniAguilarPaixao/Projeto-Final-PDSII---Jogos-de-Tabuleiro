@@ -2,8 +2,8 @@
 #include "SDLUtils.hpp"
 #include <iostream>
 
-JogoDaVelhaWidget::JogoDaVelhaWidget(SDL_Renderer* renderer, TTF_Font* fonte) 
-    : renderer(renderer), fonte(fonte), larguraCelula(100), alturaCelula(100) {
+JogoDaVelhaWidget::JogoDaVelhaWidget(SDL_Renderer* renderer, TTF_Font* fonte, MenuState& menuState) 
+    : renderer(renderer), fonte(fonte),larguraCelula(100), alturaCelula(100), menuState(menuState) {
     // Inicializar SDL_ttf
     if (TTF_Init() == -1) {
         std::cerr << "Erro ao inicializar SDL_ttf: " << TTF_GetError() << std::endl;
@@ -86,14 +86,15 @@ void JogoDaVelhaWidget::exibirTexto(const std::string& texto, int x, int y) {
     SDL_DestroyTexture(texture);
 }
 
-void JogoDaVelhaWidget::jogar() {
+int JogoDaVelhaWidget::jogar(const std::vector<std::shared_ptr<Jogador>>& jogadoresSelecionados) {
     bool quit = false;
     SDL_Event e;
     char jogadorAtual = 'X';
 
     // Obtém a largura da janela
     int larguraJanela;
-    SDL_GetRendererOutputSize(renderer, &larguraJanela, nullptr);
+    int alturaJanela;
+    SDL_GetRendererOutputSize(renderer, &larguraJanela, &alturaJanela);
 
     while (!quit) {
         while (SDL_PollEvent(&e) != 0) {
@@ -104,17 +105,54 @@ void JogoDaVelhaWidget::jogar() {
             }
         }
 
+        if (verificarVitoria(jogadorAtual)) {
+            exibirTexto("Vencedor: " + std::string(1, jogadorAtual), larguraJanela / 2 - 50, alturaJanela / 2 - 10);
+            SDL_RenderPresent(renderer);
+            SDL_Delay(2000); // Pausa para mostrar a vitória
+
+            bool esperando = true;
+            while (esperando) {
+                while (SDL_PollEvent(&e) != 0) {
+                    if (e.type == SDL_QUIT || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN) {
+                        esperando = false;
+                    }
+                }
+            }
+
+            menuState = JOGOS_MENU;
+            return (jogadorAtual == 'X') ? 0 : 1;
+        }
+
+        if (tabuleiroCheio()) {
+            exibirTexto("Empate!", larguraJanela / 2 - 30, alturaJanela / 2 - 10);
+            SDL_RenderPresent(renderer);
+            SDL_Delay(2000); // Pausa para mostrar o empate
+
+            bool esperando = true;
+            while (esperando) {
+                while (SDL_PollEvent(&e) != 0) {
+                    if (e.type == SDL_QUIT || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_KEYDOWN) {
+                        esperando = false;
+                    }
+                }
+            }
+
+            menuState = JOGOS_MENU;
+            return 2;
+        }
+
         desenhar();
 
+        std::string apelidoJogador1 = jogadoresSelecionados[0]->getApelido();
+        std::string apelidoJogador2 = jogadoresSelecionados[1]->getApelido();
+
         // Exibe o jogador atual na parte superior direita da janela
-        std::string textoJogador = (jogadorAtual == 'X') ? "Jogador 1 (X)" : "Jogador 2 (O)";
+        std::string textoJogador = (jogadorAtual == 'X') ? apelidoJogador1 : apelidoJogador2;
         int xTexto = larguraJanela - 10 - textoJogador.size() * 10; // Ajuste a posição X com base no comprimento do texto
         exibirTexto(textoJogador, xTexto, 10); // Ajuste a posição Y conforme necessário
 
         SDL_RenderPresent(renderer);
-
-        if (verificarVitoria(jogadorAtual) || tabuleiroCheio()) {
-            quit = true;
-        }
     }
+    menuState = JOGOS_MENU;
+    return 2; // Retorno padrão em caso de empate
 }

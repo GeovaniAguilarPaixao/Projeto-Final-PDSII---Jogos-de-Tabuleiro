@@ -1,18 +1,21 @@
-#ifndef JOGO_DA_VELHA_HPP
-#define JOGO_DA_VELHA_HPP
+#ifndef JOGODAVELHA_HPP
+#define JOGODAVELHA_HPP
 
 #include "JogoDeTabuleiro.hpp"
 
 class JogoDaVelha : public JogoDeTabuleiro {
 public:
     JogoDaVelha();
-    ~JogoDaVelha() = default;
 
     bool verificarVitoria(char jogador) const override;
     bool tabuleiroCheio() const override;
-    bool isBidimensional() const override { return true; }
+    bool isBidimensional() const override;
 
-    void jogadaIA(char jogador); 
+    void jogadaIA(char jogador);
+
+private:
+    int minimax(int profundidade, bool isMaximizing, char jogador);
+    int avaliar() const;
 };
 
-#endif // JOGO_DA_VELHA_HPP
+#endif // JOGODAVELHA_HPP

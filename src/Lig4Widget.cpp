@@ -2,8 +2,8 @@
 #include "SDLUtils.hpp"
 #include <iostream>
 
-Lig4Widget::Lig4Widget(SDL_Renderer* renderer, TTF_Font* fonte)  
-    : renderer(renderer), fonte(fonte), larguraCelula(70), alturaCelula(70) {
+Lig4Widget::Lig4Widget(SDL_Renderer* renderer, TTF_Font* fonte, MenuState& menuState)  
+    : renderer(renderer), fonte(fonte),larguraCelula(70), alturaCelula(70), menuState(menuState) {
     // Inicializar SDL_ttf
     if (TTF_Init() == -1) {
         std::cerr << "Erro ao inicializar SDL_ttf: " << TTF_GetError() << std::endl;
@@ -90,7 +90,7 @@ bool Lig4Widget::jogadaValida(int coluna) {
     return tabuleiro[0][coluna] == '-';
 }
 
-void Lig4Widget::jogar() {
+int Lig4Widget::jogar(const std::vector<std::shared_ptr<Jogador>>& jogadoresSelecionados) {
     bool quit = false;
     SDL_Event e;
     char jogadorAtual = 'X';
@@ -108,17 +108,28 @@ void Lig4Widget::jogar() {
             }
         }
 
+        if (verificarVitoria(jogadorAtual)) {
+            menuState = JOGOS_MENU;
+            return (jogadorAtual == 'X') ? 0 : 1;
+        }
+
+        if (tabuleiroCheio()) {
+            menuState = JOGOS_MENU;
+            return 2;
+        }
+
         desenhar();
 
+        std::string apelidoJogador1 = jogadoresSelecionados[0]->getApelido();
+        std::string apelidoJogador2 = jogadoresSelecionados[1]->getApelido();
+
         // Exibe o jogador atual na parte superior direita da janela
-        std::string textoJogador = (jogadorAtual == 'X') ? "Jogador 1 (O)" : "Jogador 2 (X)";
-        int xTexto = larguraJanela - 10 - textoJogador.size() * 10; // Ajusta a posição X com base no comprimento do texto
-        exibirTexto(textoJogador, xTexto, 10); // Ajusta a posição Y conforme necessário
+        std::string textoJogador = (jogadorAtual == 'X') ? apelidoJogador1 : apelidoJogador2;
+        int xTexto = larguraJanela - 10 - textoJogador.size() * 10; // Ajuste a posição X com base no comprimento do texto
+        exibirTexto(textoJogador, xTexto, 10); // Ajuste a posição Y conforme necessário
 
         SDL_RenderPresent(renderer);
-
-        if (verificarVitoria(jogadorAtual) || tabuleiroCheio()) {
-            quit = true;
-        }
     }
+    menuState = JOGOS_MENU;
+    return 2; // Retorno padrão em caso de empate
 }

@@ -4,8 +4,6 @@
 
 Jogador::Jogador(const std::string& apelido, const std::string& nome) : apelido(apelido), nome(nome) {}
 
-//Jogador::Jogador(std::string apelido, std::string nome) : apelido(apelido), nome(nome) {}
-
 std::string Jogador::getApelido() const {
     return this->apelido;
 }
@@ -27,9 +25,9 @@ void Jogador::listarEstatisticas() const {
 
 // Adiciona estatísticas ao jogador
 // Recebe como parâmetros o (nome do jogo) e o (resultado), sendo:
-// 0: vitória
-// 1: derrota
-// 2: empate
+// 0: +1 vitória
+// 1: +1 derrota
+// 2: +1 empate
 void Jogador::setEstatistica(std::string jogo, int resultado) {
   // Verifica se o jogo já existe no map
   if (this->estatisticas.find(jogo) != this->estatisticas.end()) {
@@ -56,7 +54,7 @@ void Jogador::salvar(std::ofstream& out) const {
   // jogo.first -> nome do jogo
   // jogo.second -> array com 3 posições ([0]=num_vitorias [1]=num_derrotas [2]=num_empates)
   for (const auto& jogo : this->estatisticas) {
-      // Salva o nome do jogo seguido do número de vitórias, derrotas e empates
+      // Salva em cada linha o nome do jogo seguido do número de vitórias, derrotas e empates
       out << jogo.first << ' ' << jogo.second[0] << ' ' << jogo.second[1] << ' ' << jogo.second[2] << '\n';
   }
   // Indica o final de dados "úteis" no arquivo
@@ -82,4 +80,9 @@ void Jogador::carregar(std::ifstream& in) {
   }
   // Ignora linhas extras que podem constar no arquivo
   in.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+}
+
+// Retorna o map com as estatísticas do jogador
+std::map<std::string, std::array<int, 3>> Jogador::getEstatisticas() const{
+  return this->estatisticas;
 }

@@ -2,17 +2,21 @@
 #define LIG4_WIDGET_HPP
 
 #include "Lig4.hpp"
+#include "Jogada.hpp"
+#include "MenuState.hpp"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <string>
+#include <vector>
+#include <memory>
 
 class Lig4Widget : public Lig4 {
 public:
-    Lig4Widget(SDL_Renderer* renderer, TTF_Font* fonte);
+    Lig4Widget(SDL_Renderer* renderer, TTF_Font* fonte, MenuState& menuState);
     ~Lig4Widget();
 
     void desenhar();
-    void jogar();
+    int jogar(const std::vector<std::shared_ptr<Jogador>>& jogadoresSelecionados);
     void tratarEvento(SDL_Event& evento, char& jogadorAtual);
 
 private:
@@ -20,6 +24,7 @@ private:
     TTF_Font* fonte;
     int larguraCelula;
     int alturaCelula;
+    MenuState& menuState;
 
     void desenharTabuleiro();
     void desenharJogada(int linha, int coluna, char jogador);

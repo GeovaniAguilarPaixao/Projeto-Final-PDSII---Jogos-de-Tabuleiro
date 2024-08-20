@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['last_497',['last',['../structdoctest_1_1ContextOptions.html#a5aaf1b28f6a46d8acb40898a502b6bef',1,'doctest::ContextOptions']]],
+  ['le_498',['le',['../namespacedoctest_1_1detail_1_1binaryAssertComparison.html#a2117cafa5b007d26f2e0988f3a081569a58efccb94f787a00914adc6db077347b',1,'doctest::detail::binaryAssertComparison']]],
+  ['lig4_499',['Lig4',['../classLig4.html',1,'Lig4'],['../classLig4.html#adffdeddf3d20829f752913801554126d',1,'Lig4::Lig4()'],['../MenuState_8hpp.html#aa3041ae4242c0dd57a126d17505443b2a17bed7b7154a7d5ff10d202858975088',1,'LIG4():&#160;MenuState.hpp']]],
+  ['lig4_2ecpp_500',['Lig4.cpp',['../Lig4_8cpp.html',1,'']]],
+  ['lig4_2ehpp_501',['Lig4.hpp',['../Lig4_8hpp.html',1,'']]],
+  ['lig4widget_502',['Lig4Widget',['../classLig4Widget.html',1,'Lig4Widget'],['../classLig4Widget.html#adc176c8210c64bd49518a6e050b66b58',1,'Lig4Widget::Lig4Widget()']]],
+  ['lig4widget_2ecpp_503',['Lig4Widget.cpp',['../Lig4Widget_8cpp.html',1,'']]],
+  ['lig4widget_2ehpp_504',['Lig4Widget.hpp',['../Lig4Widget_8hpp.html',1,'']]],
+  ['lightgrey_505',['LightGrey',['../namespacedoctest_1_1Color.html#a32e9eaf6013139846e848af6e6cf2b92a44f079a43a4709abd7d6f22b317838a2',1,'doctest::Color']]],
+  ['linhas_506',['linhas',['../classJogoDeTabuleiro.html#affe59c99223c8ef23356a98827bcf527',1,'JogoDeTabuleiro']]],
+  ['list_5fjogadores_507',['LIST_JOGADORES',['../MenuState_8hpp.html#aa3041ae4242c0dd57a126d17505443b2af308f731eb15fb3087838f03bb2c76c4',1,'MenuState.hpp']]],
+  ['list_5freporters_508',['list_reporters',['../structdoctest_1_1ContextOptions.html#ad3daf077ac3182db5175f8baff49fce0',1,'doctest::ContextOptions']]],
+  ['list_5ftest_5fcases_509',['list_test_cases',['../structdoctest_1_1ContextOptions.html#a813e1543c358ab8a7a432b4ad2b32e56',1,'doctest::ContextOptions']]],
+  ['list_5ftest_5fsuites_510',['list_test_suites',['../structdoctest_1_1ContextOptions.html#a579399a66b278cbf96b6183d337f486b',1,'doctest::ContextOptions']]],
+  ['listarestatisticas_511',['listarEstatisticas',['../classJogador.html#a52ae022c723a9138c089ba00e77eb21f',1,'Jogador']]],
+  ['listarjogadores_512',['listarJogadores',['../classJogada.html#ae82a916f78b52c5276fb5b776749a709',1,'Jogada']]],
+  ['log_513',['log',['../structdoctest_1_1detail_1_1ResultBuilder.html#a2af75dd1d8db8d3aa949d78025854085',1,'doctest::detail::ResultBuilder::log()'],['../structdoctest_1_1detail_1_1MessageBuilder.html#a9bcc5d56e1764a7e07efebca55e43cce',1,'doctest::detail::MessageBuilder::log()']]],
+  ['log_5fassert_514',['log_assert',['../structdoctest_1_1IReporter.html#a5bb54923eab233bb02f2fcfc178fa12a',1,'doctest::IReporter']]],
+  ['log_5fmessage_515',['log_message',['../structdoctest_1_1IReporter.html#a2b2cb4f15aa7417d4903a0edc3147018',1,'doctest::IReporter']]],
+  ['logged_516',['logged',['../structdoctest_1_1detail_1_1MessageBuilder.html#ab99f0292c65f7a4311a6ecd94f313bf3',1,'doctest::detail::MessageBuilder']]],
+  ['lt_517',['lt',['../namespacedoctest_1_1detail_1_1binaryAssertComparison.html#a2117cafa5b007d26f2e0988f3a081569aea0e8621512e05d78d88ff2d2c164a6b',1,'doctest::detail::binaryAssertComparison']]]
+];

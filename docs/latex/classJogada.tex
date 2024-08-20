@@ -1,0 +1,85 @@
+\hypertarget{classJogada}{}\doxysection{Jogada Class Reference}
+\label{classJogada}\index{Jogada@{Jogada}}
+
+
+{\ttfamily \#include $<$Jogada.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJogada_abeedbf9c4f80e3cfe3e600c02cdbc87f}{Jogada}} ()=default
+\item 
+void \mbox{\hyperlink{classJogada_a982387e2c0c5c8c7513aded1c52786f1}{carregar\+Jogadores}} (std\+::string dir\+\_\+data)
+\item 
+void \mbox{\hyperlink{classJogada_a94b0397d83cd1c4ad98988f065931aff}{salvar\+Jogadores}} (std\+::string dir\+\_\+data) const
+\item 
+void \mbox{\hyperlink{classJogada_a895f38a86422f7bfa9e440c051c24176}{adicionar\+Jogador}} (std\+::string apelido, std\+::string nome)
+\item 
+void \mbox{\hyperlink{classJogada_a0217e98061b5d7e0fbf7701b25cc99c0}{remover\+Jogador}} (std\+::string apelido, std\+::string dir\+\_\+data)
+\item 
+void \mbox{\hyperlink{classJogada_ae82a916f78b52c5276fb5b776749a709}{listar\+Jogadores}} () const
+\item 
+\mbox{\hyperlink{classJogador}{Jogador}} $\ast$ \mbox{\hyperlink{classJogada_a72c7a3582a2b93a8393f0943215e786f}{selecionar\+Jogador}} (std\+::string apelido) const
+\item 
+const std\+::map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classJogador}{Jogador}} $>$ $>$ \& \mbox{\hyperlink{classJogada_a13cb76796f33471181ac726df0c60c52}{get\+Jogadores}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classJogada_abeedbf9c4f80e3cfe3e600c02cdbc87f}\label{classJogada_abeedbf9c4f80e3cfe3e600c02cdbc87f}} 
+\index{Jogada@{Jogada}!Jogada@{Jogada}}
+\index{Jogada@{Jogada}!Jogada@{Jogada}}
+\doxysubsubsection{\texorpdfstring{Jogada()}{Jogada()}}
+{\footnotesize\ttfamily Jogada\+::\+Jogada (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classJogada_a895f38a86422f7bfa9e440c051c24176}\label{classJogada_a895f38a86422f7bfa9e440c051c24176}} 
+\index{Jogada@{Jogada}!adicionarJogador@{adicionarJogador}}
+\index{adicionarJogador@{adicionarJogador}!Jogada@{Jogada}}
+\doxysubsubsection{\texorpdfstring{adicionarJogador()}{adicionarJogador()}}
+{\footnotesize\ttfamily void Jogada\+::adicionar\+Jogador (\begin{DoxyParamCaption}\item[{std\+::string}]{apelido,  }\item[{std\+::string}]{nome }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classJogada_a982387e2c0c5c8c7513aded1c52786f1}\label{classJogada_a982387e2c0c5c8c7513aded1c52786f1}} 
+\index{Jogada@{Jogada}!carregarJogadores@{carregarJogadores}}
+\index{carregarJogadores@{carregarJogadores}!Jogada@{Jogada}}
+\doxysubsubsection{\texorpdfstring{carregarJogadores()}{carregarJogadores()}}
+{\footnotesize\ttfamily void Jogada\+::carregar\+Jogadores (\begin{DoxyParamCaption}\item[{std\+::string}]{dir\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classJogada_a13cb76796f33471181ac726df0c60c52}\label{classJogada_a13cb76796f33471181ac726df0c60c52}} 
+\index{Jogada@{Jogada}!getJogadores@{getJogadores}}
+\index{getJogadores@{getJogadores}!Jogada@{Jogada}}
+\doxysubsubsection{\texorpdfstring{getJogadores()}{getJogadores()}}
+{\footnotesize\ttfamily const std\+::map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classJogador}{Jogador}} $>$ $>$ \& Jogada\+::get\+Jogadores (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classJogada_ae82a916f78b52c5276fb5b776749a709}\label{classJogada_ae82a916f78b52c5276fb5b776749a709}} 
+\index{Jogada@{Jogada}!listarJogadores@{listarJogadores}}
+\index{listarJogadores@{listarJogadores}!Jogada@{Jogada}}
+\doxysubsubsection{\texorpdfstring{listarJogadores()}{listarJogadores()}}
+{\footnotesize\ttfamily void Jogada\+::listar\+Jogadores (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classJogada_a0217e98061b5d7e0fbf7701b25cc99c0}\label{classJogada_a0217e98061b5d7e0fbf7701b25cc99c0}} 
+\index{Jogada@{Jogada}!removerJogador@{removerJogador}}
+\index{removerJogador@{removerJogador}!Jogada@{Jogada}}
+\doxysubsubsection{\texorpdfstring{removerJogador()}{removerJogador()}}
+{\footnotesize\ttfamily void Jogada\+::remover\+Jogador (\begin{DoxyParamCaption}\item[{std\+::string}]{apelido,  }\item[{std\+::string}]{dir\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classJogada_a94b0397d83cd1c4ad98988f065931aff}\label{classJogada_a94b0397d83cd1c4ad98988f065931aff}} 
+\index{Jogada@{Jogada}!salvarJogadores@{salvarJogadores}}
+\index{salvarJogadores@{salvarJogadores}!Jogada@{Jogada}}
+\doxysubsubsection{\texorpdfstring{salvarJogadores()}{salvarJogadores()}}
+{\footnotesize\ttfamily void Jogada\+::salvar\+Jogadores (\begin{DoxyParamCaption}\item[{std\+::string}]{dir\+\_\+data }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classJogada_a72c7a3582a2b93a8393f0943215e786f}\label{classJogada_a72c7a3582a2b93a8393f0943215e786f}} 
+\index{Jogada@{Jogada}!selecionarJogador@{selecionarJogador}}
+\index{selecionarJogador@{selecionarJogador}!Jogada@{Jogada}}
+\doxysubsubsection{\texorpdfstring{selecionarJogador()}{selecionarJogador()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classJogador}{Jogador}} $\ast$ Jogada\+::selecionar\+Jogador (\begin{DoxyParamCaption}\item[{std\+::string}]{apelido }\end{DoxyParamCaption}) const}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Jogada_8hpp}{Jogada.\+hpp}}\item 
+src/\mbox{\hyperlink{Jogada_8cpp}{Jogada.\+cpp}}\end{DoxyCompactItemize}

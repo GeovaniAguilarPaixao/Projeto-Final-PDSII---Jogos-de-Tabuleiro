@@ -60,3 +60,4 @@ void JogoDeTabuleiro::fazerJogada(int coluna, char jogador) {
         }
     }
 }
+

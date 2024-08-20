@@ -1,5 +1,5 @@
 #include "JogoDaVelha.hpp"
-#include <iostream>
+#include <algorithm>
 
 JogoDaVelha::JogoDaVelha() : JogoDeTabuleiro(3, 3) {}
 
@@ -36,39 +36,73 @@ bool JogoDaVelha::tabuleiroCheio() const {
     }
     return true;
 }
+
+bool JogoDaVelha::isBidimensional() const {
+    return true;
+}
+
 void JogoDaVelha::jogadaIA(char jogador) {
+    int melhorValor = -100;
+    int melhorLinha = -1;
+    int melhorColuna = -1;
+
     for (int i = 0; i < linhas; ++i) {
         for (int j = 0; j < colunas; ++j) {
             if (jogadaValida(i, j)) {
                 tabuleiro[i][j] = jogador;
-                if (verificarVitoria(jogador)) {
-                    return;
-                }
+                int valorJogada = minimax(0, false, jogador);
                 tabuleiro[i][j] = '-';
+                if (valorJogada > melhorValor) {
+                    melhorLinha = i;
+                    melhorColuna = j;
+                    melhorValor = valorJogada;
+                }
             }
         }
     }
 
-    char adversario = (jogador == 'X') ? 'O' : 'X';
-    for (int i = 0; i < linhas; ++i) {
-        for (int j = 0; j < colunas; ++j) {
-            if (jogadaValida(i, j)) {
-                tabuleiro[i][j] = adversario;
-                if (verificarVitoria(adversario)) {
+    if (melhorLinha != -1 && melhorColuna != -1) {
+        tabuleiro[melhorLinha][melhorColuna] = jogador;
+    }
+}
+
+int JogoDaVelha::minimax(int profundidade, bool isMaximizing, char jogador) {
+    int pontuacao = avaliar();
+
+    if (pontuacao == 10) return pontuacao - profundidade;
+    if (pontuacao == -10) return pontuacao + profundidade;
+    if (tabuleiroCheio()) return 0;
+
+    if (isMaximizing) {
+        int melhor = -100;
+        for (int i = 0; i < linhas; ++i) {
+            for (int j = 0; j < colunas; ++j) {
+                if (jogadaValida(i, j)) {
                     tabuleiro[i][j] = jogador;
-                    return;
+                    melhor = std::max(melhor, minimax(profundidade + 1, false, jogador));
+                    tabuleiro[i][j] = '-';
                 }
-                tabuleiro[i][j] = '-';
             }
         }
-    }
-
-    while (true) {
-        int i = rand() % linhas;
-        int j = rand() % colunas;
-        if (jogadaValida(i, j)) {
-            tabuleiro[i][j] = jogador;
-            break;
+        return melhor;
+    } else {
+        int melhor = 100;
+        char adversario = (jogador == 'X') ? 'O' : 'X';
+        for (int i = 0; i < linhas; ++i) {
+            for (int j = 0; j < colunas; ++j) {
+                if (jogadaValida(i, j)) {
+                    tabuleiro[i][j] = adversario;
+                    melhor = std::min(melhor, minimax(profundidade + 1, true, jogador));
+                    tabuleiro[i][j] = '-';
+                }
+            }
         }
+        return melhor;
     }
+}
+
+int JogoDaVelha::avaliar() const {
+    if (verificarVitoria('X')) return 10;
+    if (verificarVitoria('O')) return -10;
+    return 0;
 }

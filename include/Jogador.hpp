@@ -12,7 +12,9 @@ private:
 
   std::string apelido;
   std::string nome;
-  // map<nome_jogo, {int_vitorias, int_derrotas, int empates}>. Container para armazenar as estatísticas do jogador. Consiste em um map no qual a chave é o nome jogo e o valor é um array com 3 posições. A primeira posição armazena o número de vitórias, a segunda o de derrotas e a terceira o de empates.
+  // map<nome_jogo, {int_vitorias, int_derrotas, int empates}>. Container para armazenar as estatísticas do jogador. Consiste em um map no qual:
+ // chave: nome do jogo
+ // valor: array com 3 posições. A primeira posição armazena o número de vitórias, a segunda o de derrotas e a terceira o de empates.
   std::map<std::string, std::array<int, 3>> estatisticas;
 
 public:
@@ -23,6 +25,8 @@ public:
   std::string getNome() const;
   // Imprime as estatísticas do jogador
   void listarEstatisticas() const;
+  // Retorna o map com as estatísticas do jogador
+  std::map<std::string, std::array<int, 3>> getEstatisticas() const;
   // Adiciona estatísticas ao jogador
   void setEstatistica(std::string, int);
   // Salva os dados do jogador em um arquivo

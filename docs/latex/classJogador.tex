@@ -1,0 +1,101 @@
+\hypertarget{classJogador}{}\doxysection{Jogador Class Reference}
+\label{classJogador}\index{Jogador@{Jogador}}
+
+
+{\ttfamily \#include $<$Jogador.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJogador_a11932150131afc0c73286dc27c1c198c}{Jogador}} (const std\+::string \&apelido, const std\+::string \&nome)
+\item 
+\mbox{\hyperlink{classJogador_ae3a7b428c85a720b37aaecc364cfe5fd}{Jogador}} ()=default
+\item 
+\mbox{\hyperlink{classJogador_a9a8ab5a3c6c236154a4cd5328fb8fdfa}{$\sim$\+Jogador}} ()=default
+\item 
+std\+::string \mbox{\hyperlink{classJogador_aab1dd73438da8f07e1b9b8b9df0a5eb4}{get\+Apelido}} () const
+\item 
+std\+::string \mbox{\hyperlink{classJogador_a56f68b57e7fb229f932ef60d2116833c}{get\+Nome}} () const
+\item 
+void \mbox{\hyperlink{classJogador_a52ae022c723a9138c089ba00e77eb21f}{listar\+Estatisticas}} () const
+\item 
+std\+::map$<$ std\+::string, std\+::array$<$ int, 3 $>$ $>$ \mbox{\hyperlink{classJogador_ae29aea93221b177c98106e7e8c27f985}{get\+Estatisticas}} () const
+\item 
+void \mbox{\hyperlink{classJogador_ae0890a5dbe0c471865010341de56866d}{set\+Estatistica}} (std\+::string, int)
+\item 
+void \mbox{\hyperlink{classJogador_aeb7c0c54d90bdab6711f75db3ec65c06}{salvar}} (std\+::ofstream \&out) const
+\item 
+void \mbox{\hyperlink{classJogador_ac7ee9b12d0de4df010f2be817fc5413c}{carregar}} (std\+::ifstream \&in)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classJogador_a11932150131afc0c73286dc27c1c198c}\label{classJogador_a11932150131afc0c73286dc27c1c198c}} 
+\index{Jogador@{Jogador}!Jogador@{Jogador}}
+\index{Jogador@{Jogador}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{Jogador()}{Jogador()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Jogador\+::\+Jogador (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{apelido,  }\item[{const std\+::string \&}]{nome }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classJogador_ae3a7b428c85a720b37aaecc364cfe5fd}\label{classJogador_ae3a7b428c85a720b37aaecc364cfe5fd}} 
+\index{Jogador@{Jogador}!Jogador@{Jogador}}
+\index{Jogador@{Jogador}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{Jogador()}{Jogador()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Jogador\+::\+Jogador (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classJogador_a9a8ab5a3c6c236154a4cd5328fb8fdfa}\label{classJogador_a9a8ab5a3c6c236154a4cd5328fb8fdfa}} 
+\index{Jogador@{Jogador}!````~Jogador@{$\sim$Jogador}}
+\index{````~Jogador@{$\sim$Jogador}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{$\sim$Jogador()}{~Jogador()}}
+{\footnotesize\ttfamily Jogador\+::$\sim$\+Jogador (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classJogador_ac7ee9b12d0de4df010f2be817fc5413c}\label{classJogador_ac7ee9b12d0de4df010f2be817fc5413c}} 
+\index{Jogador@{Jogador}!carregar@{carregar}}
+\index{carregar@{carregar}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{carregar()}{carregar()}}
+{\footnotesize\ttfamily void Jogador\+::carregar (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{in }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classJogador_aab1dd73438da8f07e1b9b8b9df0a5eb4}\label{classJogador_aab1dd73438da8f07e1b9b8b9df0a5eb4}} 
+\index{Jogador@{Jogador}!getApelido@{getApelido}}
+\index{getApelido@{getApelido}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{getApelido()}{getApelido()}}
+{\footnotesize\ttfamily std\+::string Jogador\+::get\+Apelido (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classJogador_ae29aea93221b177c98106e7e8c27f985}\label{classJogador_ae29aea93221b177c98106e7e8c27f985}} 
+\index{Jogador@{Jogador}!getEstatisticas@{getEstatisticas}}
+\index{getEstatisticas@{getEstatisticas}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{getEstatisticas()}{getEstatisticas()}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string, std\+::array$<$ int, 3 $>$ $>$ Jogador\+::get\+Estatisticas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classJogador_a56f68b57e7fb229f932ef60d2116833c}\label{classJogador_a56f68b57e7fb229f932ef60d2116833c}} 
+\index{Jogador@{Jogador}!getNome@{getNome}}
+\index{getNome@{getNome}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{getNome()}{getNome()}}
+{\footnotesize\ttfamily std\+::string Jogador\+::get\+Nome (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classJogador_a52ae022c723a9138c089ba00e77eb21f}\label{classJogador_a52ae022c723a9138c089ba00e77eb21f}} 
+\index{Jogador@{Jogador}!listarEstatisticas@{listarEstatisticas}}
+\index{listarEstatisticas@{listarEstatisticas}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{listarEstatisticas()}{listarEstatisticas()}}
+{\footnotesize\ttfamily void Jogador\+::listar\+Estatisticas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classJogador_aeb7c0c54d90bdab6711f75db3ec65c06}\label{classJogador_aeb7c0c54d90bdab6711f75db3ec65c06}} 
+\index{Jogador@{Jogador}!salvar@{salvar}}
+\index{salvar@{salvar}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{salvar()}{salvar()}}
+{\footnotesize\ttfamily void Jogador\+::salvar (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{out }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classJogador_ae0890a5dbe0c471865010341de56866d}\label{classJogador_ae0890a5dbe0c471865010341de56866d}} 
+\index{Jogador@{Jogador}!setEstatistica@{setEstatistica}}
+\index{setEstatistica@{setEstatistica}!Jogador@{Jogador}}
+\doxysubsubsection{\texorpdfstring{setEstatistica()}{setEstatistica()}}
+{\footnotesize\ttfamily void Jogador\+::set\+Estatistica (\begin{DoxyParamCaption}\item[{std\+::string}]{jogo,  }\item[{int}]{resultado }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{Jogador_8hpp}{Jogador.\+hpp}}\item 
+src/\mbox{\hyperlink{Jogador_8cpp}{Jogador.\+cpp}}\end{DoxyCompactItemize}

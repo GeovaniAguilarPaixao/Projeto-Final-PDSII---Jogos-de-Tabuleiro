@@ -16,7 +16,7 @@ public:
     virtual bool verificarVitoria(char jogador) const = 0;
     virtual bool tabuleiroCheio() const = 0;
     virtual bool isBidimensional() const = 0;
-
+    
     void imprimirTabuleiro() const;
 
 protected:

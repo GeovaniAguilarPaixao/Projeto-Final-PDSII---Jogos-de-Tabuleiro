@@ -2,17 +2,21 @@
 #define REVERSI_WIDGET_HPP
 
 #include "Reversi.hpp"
+#include "Jogada.hpp"
+#include "MenuState.hpp"
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <string>
+#include <vector>
+#include <memory>
 
 class ReversiWidget : public Reversi {
 public:
-    ReversiWidget(SDL_Renderer* renderer, TTF_Font* fonte);
+    ReversiWidget(SDL_Renderer* renderer, TTF_Font* fonte, MenuState& menuState);
     ~ReversiWidget();
 
     void desenhar();
-    void jogar();
+    int jogar(const std::vector<std::shared_ptr<Jogador>>& jogadoresSelecionados);
     void tratarEvento(SDL_Event& evento, char& jogadorAtual);
 
 private:
@@ -20,6 +24,7 @@ private:
     TTF_Font* fonte;
     int larguraCelula;
     int alturaCelula;
+    MenuState& menuState;
 
     void desenharTabuleiro();
     void desenharJogada(int linha, int coluna, char jogador);

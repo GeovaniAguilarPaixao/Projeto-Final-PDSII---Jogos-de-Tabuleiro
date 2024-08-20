@@ -1,0 +1,161 @@
+\hypertarget{classJogoDeTabuleiro}{}\doxysection{Jogo\+De\+Tabuleiro Class Reference}
+\label{classJogoDeTabuleiro}\index{JogoDeTabuleiro@{JogoDeTabuleiro}}
+
+
+{\ttfamily \#include $<$Jogo\+De\+Tabuleiro.\+hpp$>$}
+
+Inheritance diagram for Jogo\+De\+Tabuleiro\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classJogoDeTabuleiro}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classJogoDeTabuleiro_a837f3f931cb5b3b8a4bbe59ab95a2ef2}{Jogo\+De\+Tabuleiro}} (int \mbox{\hyperlink{classJogoDeTabuleiro_affe59c99223c8ef23356a98827bcf527}{linhas}}, int \mbox{\hyperlink{classJogoDeTabuleiro_a65d00d9fe732cf9aeaf3aed73b0d5294}{colunas}})
+\item 
+virtual \mbox{\hyperlink{classJogoDeTabuleiro_a8d526d746009c3a6fe4f7f79b65ff286}{$\sim$\+Jogo\+De\+Tabuleiro}} ()=default
+\item 
+virtual bool \mbox{\hyperlink{classJogoDeTabuleiro_a16d6282d82d87c534e9345591f80f93e}{jogada\+Valida}} (int linha, int coluna) const
+\item 
+virtual bool \mbox{\hyperlink{classJogoDeTabuleiro_a43206d3ad4e5edaac4f7f5da384c21d2}{fazer\+Jogada}} (int linha, int coluna, char jogador)
+\item 
+virtual bool \mbox{\hyperlink{classJogoDeTabuleiro_a74381dcd020047dcc87b3d3397837073}{jogada\+Valida}} (int coluna) const
+\item 
+virtual void \mbox{\hyperlink{classJogoDeTabuleiro_a176f0d1eb4cc2d1cc34c93d7a0bdb666}{fazer\+Jogada}} (int coluna, char jogador)
+\item 
+virtual bool \mbox{\hyperlink{classJogoDeTabuleiro_ad42f735cc20ad82be812a768d7738add}{verificar\+Vitoria}} (char jogador) const =0
+\item 
+virtual bool \mbox{\hyperlink{classJogoDeTabuleiro_a3d38c00071c5b9207916a18609463f55}{tabuleiro\+Cheio}} () const =0
+\item 
+virtual bool \mbox{\hyperlink{classJogoDeTabuleiro_a9467b9f46a0bb335faafcc3a457575aa}{is\+Bidimensional}} () const =0
+\item 
+void \mbox{\hyperlink{classJogoDeTabuleiro_a9ba6524f8bbd3834a890b6f7c3e31708}{imprimir\+Tabuleiro}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classJogoDeTabuleiro_affe59c99223c8ef23356a98827bcf527}{linhas}}
+\item 
+int \mbox{\hyperlink{classJogoDeTabuleiro_a65d00d9fe732cf9aeaf3aed73b0d5294}{colunas}}
+\item 
+char $\ast$$\ast$ \mbox{\hyperlink{classJogoDeTabuleiro_a8191b6564f2d62aef77b50e4bac40a5b}{tabuleiro}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classJogoDeTabuleiro_a837f3f931cb5b3b8a4bbe59ab95a2ef2}\label{classJogoDeTabuleiro_a837f3f931cb5b3b8a4bbe59ab95a2ef2}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{JogoDeTabuleiro()}{JogoDeTabuleiro()}}
+{\footnotesize\ttfamily Jogo\+De\+Tabuleiro\+::\+Jogo\+De\+Tabuleiro (\begin{DoxyParamCaption}\item[{int}]{linhas,  }\item[{int}]{colunas }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classJogoDeTabuleiro_a8d526d746009c3a6fe4f7f79b65ff286}\label{classJogoDeTabuleiro_a8d526d746009c3a6fe4f7f79b65ff286}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!````~JogoDeTabuleiro@{$\sim$JogoDeTabuleiro}}
+\index{````~JogoDeTabuleiro@{$\sim$JogoDeTabuleiro}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{$\sim$JogoDeTabuleiro()}{~JogoDeTabuleiro()}}
+{\footnotesize\ttfamily virtual Jogo\+De\+Tabuleiro\+::$\sim$\+Jogo\+De\+Tabuleiro (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classJogoDeTabuleiro_a176f0d1eb4cc2d1cc34c93d7a0bdb666}\label{classJogoDeTabuleiro_a176f0d1eb4cc2d1cc34c93d7a0bdb666}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!fazerJogada@{fazerJogada}}
+\index{fazerJogada@{fazerJogada}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{fazerJogada()}{fazerJogada()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Jogo\+De\+Tabuleiro\+::fazer\+Jogada (\begin{DoxyParamCaption}\item[{int}]{coluna,  }\item[{char}]{jogador }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classLig4_a715195478b800e57bbb25e0de020d7d7}{Lig4}}.
+
+\mbox{\Hypertarget{classJogoDeTabuleiro_a43206d3ad4e5edaac4f7f5da384c21d2}\label{classJogoDeTabuleiro_a43206d3ad4e5edaac4f7f5da384c21d2}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!fazerJogada@{fazerJogada}}
+\index{fazerJogada@{fazerJogada}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{fazerJogada()}{fazerJogada()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Jogo\+De\+Tabuleiro\+::fazer\+Jogada (\begin{DoxyParamCaption}\item[{int}]{linha,  }\item[{int}]{coluna,  }\item[{char}]{jogador }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classReversi_ab73dbc920ecac3eae3af9b6781c8fc32}{Reversi}}.
+
+\mbox{\Hypertarget{classJogoDeTabuleiro_a9ba6524f8bbd3834a890b6f7c3e31708}\label{classJogoDeTabuleiro_a9ba6524f8bbd3834a890b6f7c3e31708}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!imprimirTabuleiro@{imprimirTabuleiro}}
+\index{imprimirTabuleiro@{imprimirTabuleiro}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{imprimirTabuleiro()}{imprimirTabuleiro()}}
+{\footnotesize\ttfamily void Jogo\+De\+Tabuleiro\+::imprimir\+Tabuleiro (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classJogoDeTabuleiro_a9467b9f46a0bb335faafcc3a457575aa}\label{classJogoDeTabuleiro_a9467b9f46a0bb335faafcc3a457575aa}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!isBidimensional@{isBidimensional}}
+\index{isBidimensional@{isBidimensional}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{isBidimensional()}{isBidimensional()}}
+{\footnotesize\ttfamily virtual bool Jogo\+De\+Tabuleiro\+::is\+Bidimensional (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classReversi_a5c9f3224b22f8148f5312312eb3673b1}{Reversi}}, \mbox{\hyperlink{classLig4_a6f6c4b4dae6e8cd84f41e8022e7d5c81}{Lig4}}, and \mbox{\hyperlink{classJogoDaVelha_a2a165a39784a7fab16d4228ba316db05}{Jogo\+Da\+Velha}}.
+
+\mbox{\Hypertarget{classJogoDeTabuleiro_a74381dcd020047dcc87b3d3397837073}\label{classJogoDeTabuleiro_a74381dcd020047dcc87b3d3397837073}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!jogadaValida@{jogadaValida}}
+\index{jogadaValida@{jogadaValida}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{jogadaValida()}{jogadaValida()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Jogo\+De\+Tabuleiro\+::jogada\+Valida (\begin{DoxyParamCaption}\item[{int}]{coluna }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classLig4_a68fbae36010e6ec6415af1fcca097e2e}{Lig4}}.
+
+\mbox{\Hypertarget{classJogoDeTabuleiro_a16d6282d82d87c534e9345591f80f93e}\label{classJogoDeTabuleiro_a16d6282d82d87c534e9345591f80f93e}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!jogadaValida@{jogadaValida}}
+\index{jogadaValida@{jogadaValida}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{jogadaValida()}{jogadaValida()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Jogo\+De\+Tabuleiro\+::jogada\+Valida (\begin{DoxyParamCaption}\item[{int}]{linha,  }\item[{int}]{coluna }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classJogoDeTabuleiro_a3d38c00071c5b9207916a18609463f55}\label{classJogoDeTabuleiro_a3d38c00071c5b9207916a18609463f55}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!tabuleiroCheio@{tabuleiroCheio}}
+\index{tabuleiroCheio@{tabuleiroCheio}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{tabuleiroCheio()}{tabuleiroCheio()}}
+{\footnotesize\ttfamily virtual bool Jogo\+De\+Tabuleiro\+::tabuleiro\+Cheio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classReversi_a06ee3bb39463a9ee15e274c5b74edd34}{Reversi}}, \mbox{\hyperlink{classLig4_a23f7cf4ae90eccb229dd8684fc0258e0}{Lig4}}, and \mbox{\hyperlink{classJogoDaVelha_acec03af79be4219899dd1330fdf59d81}{Jogo\+Da\+Velha}}.
+
+\mbox{\Hypertarget{classJogoDeTabuleiro_ad42f735cc20ad82be812a768d7738add}\label{classJogoDeTabuleiro_ad42f735cc20ad82be812a768d7738add}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!verificarVitoria@{verificarVitoria}}
+\index{verificarVitoria@{verificarVitoria}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{verificarVitoria()}{verificarVitoria()}}
+{\footnotesize\ttfamily virtual bool Jogo\+De\+Tabuleiro\+::verificar\+Vitoria (\begin{DoxyParamCaption}\item[{char}]{jogador }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classReversi_a95d8e9d862a45ead68fb6380ae9a1ebb}{Reversi}}, \mbox{\hyperlink{classLig4_a2d4e8edec5f21771fac7fc36afb94b6e}{Lig4}}, and \mbox{\hyperlink{classJogoDaVelha_a1045cd4fcde0e32c83c074a3ae96367f}{Jogo\+Da\+Velha}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classJogoDeTabuleiro_a65d00d9fe732cf9aeaf3aed73b0d5294}\label{classJogoDeTabuleiro_a65d00d9fe732cf9aeaf3aed73b0d5294}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!colunas@{colunas}}
+\index{colunas@{colunas}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{colunas}{colunas}}
+{\footnotesize\ttfamily int Jogo\+De\+Tabuleiro\+::colunas\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classJogoDeTabuleiro_affe59c99223c8ef23356a98827bcf527}\label{classJogoDeTabuleiro_affe59c99223c8ef23356a98827bcf527}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!linhas@{linhas}}
+\index{linhas@{linhas}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{linhas}{linhas}}
+{\footnotesize\ttfamily int Jogo\+De\+Tabuleiro\+::linhas\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{classJogoDeTabuleiro_a8191b6564f2d62aef77b50e4bac40a5b}\label{classJogoDeTabuleiro_a8191b6564f2d62aef77b50e4bac40a5b}} 
+\index{JogoDeTabuleiro@{JogoDeTabuleiro}!tabuleiro@{tabuleiro}}
+\index{tabuleiro@{tabuleiro}!JogoDeTabuleiro@{JogoDeTabuleiro}}
+\doxysubsubsection{\texorpdfstring{tabuleiro}{tabuleiro}}
+{\footnotesize\ttfamily char$\ast$$\ast$ Jogo\+De\+Tabuleiro\+::tabuleiro\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{JogoDeTabuleiro_8hpp}{Jogo\+De\+Tabuleiro.\+hpp}}\item 
+src/\mbox{\hyperlink{JogoDeTabuleiro_8cpp}{Jogo\+De\+Tabuleiro.\+cpp}}\end{DoxyCompactItemize}
